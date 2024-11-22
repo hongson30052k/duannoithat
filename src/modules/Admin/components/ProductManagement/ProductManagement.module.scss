@@ -1,0 +1,543 @@
+input,
+select {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: bold;
+}
+label:first-child {
+  margin-top: 40px;
+}
+input:focus {
+  border-color: #1976d2;
+  box-shadow: 0 0 5px rgba(25, 118, 210, 0.5);
+  outline: none;
+}
+
+.product-management {
+  .product-management-title {
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-weight: 600;
+    color: #3a3a3a;
+  }
+}
+
+.error {
+  color: red;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f2f2f2;
+}
+
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 16px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.product-table th,
+.product-table td {
+  padding: 15px 20px;
+  border: 1px solid #e0e0e0;
+  text-align: left;
+}
+.product-table thead {
+  background-color: #007bff;
+  color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.product-table tbody tr {
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.product-table tbody tr:hover {
+  background-color: #f0f8ff;
+  transform: scale(1.02);
+}
+
+.product-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.product-table tbody tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+.product-image {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #c82333; /* Tối màu khi hover */
+}
+
+// Wrapper Modal (bao ngoài modal)
+.modal-open-description {
+  position: fixed; // Modal phủ toàn màn hình
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); // Nền mờ cho modal
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; // Đảm bảo modal hiển thị trên cùng
+  padding: 20px;
+}
+
+// Modal Content (nội dung modal)
+.modal-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  position: relative;
+  max-height: 80%;
+  overflow-y: auto; // Cho phép cuộn nếu nội dung quá dài
+}
+
+// Close Button (nút đóng)
+.modal-content {
+  .close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #f44336; // Màu đỏ khi hover
+    }
+  }
+
+  h2 {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+}
+
+// Form nhập liệu
+.modal-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; // Khoảng cách giữa các phần tử trong form
+
+  // Các phần tử input và label
+  label {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+  }
+
+  input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+    margin-bottom: 15px; // Khoảng cách dưới mỗi input
+  }
+
+  input:focus {
+    border-color: #4f8bf9; // Màu viền khi input được focus
+    outline: none;
+  }
+
+  // Thông báo lỗi
+  .error {
+    color: #f44336;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+
+  // Nút submit
+  button[type="submit"] {
+    padding: 12px 20px;
+    background-color: #4f8bf9;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #3578d1; // Màu khi hover
+    }
+  }
+}
+
+.modal-show-description {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  pointer-events: all;
+}
+
+/* 2. Modal content */
+.modal-content-show-description {
+  position: relative;
+  background: #fff;
+  width: 80%;
+  max-width: 1200px;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: scale(0.9);
+  transition: transform 0.3s ease-out;
+  pointer-events: all;
+  user-select: none;
+  &.show {
+    transform: scale(1);
+  }
+
+  h2 {
+    font-size: 1.7rem;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+
+    th,
+    td {
+      padding: 8px 12px;
+      text-align: left;
+      font-size: 1.5rem;
+      color: #555;
+    }
+
+    th {
+      // background-color: #f4f4f4;
+      width: 14%;
+      font-weight: bold;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+  }
+  .close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    color: #888;
+    cursor: pointer;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: #d9534f; /* Màu đỏ khi hover */
+    }
+  }
+}
+
+/* 4. Add animation for fade-in */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-show-description .modal-content {
+  animation: fadeIn 0.4s ease-out;
+}
+
+/* Định dạng cho title */
+.data-management-title {
+  font-size: 2rem; /* Kích thước font lớn để nổi bật */
+  font-weight: 600; /* Đậm vừa phải */
+  text-transform: uppercase; /* Chữ hoa tất cả */
+  color: #333; /* Màu chữ đậm nhưng không quá tối */
+  letter-spacing: 2px; /* Giãn cách chữ */
+  position: relative; /* Để sử dụng với pseudo element */
+  display: inline-block; /* Đảm bảo nó hiển thị dạng inline với các phần tử khác */
+  background-image: linear-gradient(
+    90deg,
+    #ff7f50,
+    #ff6347
+  ); /* Gradient nền đẹp */
+  -webkit-background-clip: text;
+  background-clip: text;
+  transition: color 0.3s ease, transform 0.3s ease;
+
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+
+  border-bottom: 4px solid #ff6347;
+  padding-bottom: 4px;
+
+  &:hover {
+    color: #ff6347;
+    transform: translateY(-4px);
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+  }
+
+  &:focus {
+    outline: none;
+    border-bottom: 4px solid #ff7f50;
+    color: #ff7f50;
+  }
+}
+
+.data-management-title:hover {
+  color: #ff6347;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+  transform: translateY(-4px);
+}
+
+/* Thêm hiệu ứng hover vào toàn bộ span */
+.data-management-title:after {
+  content: ""; /* Tạo một pseudo element để có thêm hiệu ứng dưới chữ */
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #ff6347;
+  transform: scaleX(0); /* Ban đầu không hiển thị */
+  transition: transform 0.3s ease;
+}
+
+.data-management-title:hover:after {
+  transform: scaleX(1); /* Khi hover, dãn đầy chiều ngang */
+}
+.size-list {
+  background-color: #f9f9f9; /* Màu nền sáng cho khối chứa */
+  padding: 20px;
+  border-radius: 8px; /* Bo góc */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ cho khối */
+  margin-top: 20px;
+
+  h3 {
+    font-size: 1.5rem; /* Cỡ chữ tiêu đề */
+    font-weight: 600;
+    color: #333; /* Màu chữ tối */
+    margin-bottom: 15px;
+    text-transform: uppercase; /* Chữ in hoa */
+    letter-spacing: 1px; /* Khoảng cách giữa các chữ cái */
+    text-align: center;
+  }
+
+  .size-render {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Khoảng cách giữa các phần tử */
+    justify-content: center; /* Căn giữa các phần tử */
+  }
+
+  span {
+    font-size: 1.125rem; /* Cỡ chữ của các phần tử trong danh sách */
+    color: #444; /* Màu chữ hơi nhạt so với tiêu đề */
+    background-color: #fff; /* Nền trắng cho mỗi mục */
+    padding: 8px 15px; /* Khoảng cách xung quanh chữ */
+    border-radius: 20px; /* Bo góc cho các mục */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+    cursor: pointer; /* Con trỏ khi hover vào mục */
+    position: relative; /* Cần thiết để đặt vị trí cho nút xóa */
+    transition: all 0.3s ease; /* Hiệu ứng chuyển động khi hover */
+
+    &:hover {
+      background-color: #1976d2; /* Màu nền khi hover */
+      color: white; /* Màu chữ trắng khi hover */
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Tăng độ bóng khi hover */
+      transform: translateY(-3px); /* Hiệu ứng di chuyển nhẹ lên */
+    }
+
+    &:active {
+      transform: translateY(1px); /* Khi nhấn, mục sẽ chìm nhẹ */
+    }
+
+    /* Hiển thị icon Xóa khi hover vào */
+    &::after {
+      content: "Xóa"; /* Nội dung chữ sẽ là 'Xóa' */
+      position: absolute;
+      top: -18px;
+      right: -10px;
+      font-size: 0.875rem;
+      color: #e74c3c;
+      font-weight: 600;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    /* Hiển thị chữ "Xóa" khi hover */
+    &:hover::after {
+      opacity: 1; /* Hiển thị khi hover */
+      pointer-events: auto;
+    }
+  }
+}
+
+/* Định dạng chung cho phần color-list */
+.color-list {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
+  margin: 10px 0;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.color-list h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* Mảng các màu sắc được render */
+.color-render {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.color-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease, background-color 0.2s ease;
+}
+
+/* Khi hover qua mỗi item */
+.color-item:hover {
+  transform: translateY(-3px);
+  background-color: #f2f2f2;
+}
+
+/* Định dạng cho hình vuông màu sắc */
+.color-box {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+}
+
+/* Tên màu sắc */
+.color-name {
+  font-size: 14px;
+  color: #555;
+}
+
+/* Nút xóa */
+.remove-size-text {
+  font-size: 12px;
+  color: #f44336;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.remove-size-text:hover {
+  color: #d32f2f;
+}
+.manufacturer-value {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.manufacturer-value p {
+  font-size: 16px;
+  color: #333;
+  font-weight: 500;
+  margin: 0;
+  text-align: left;
+}
+
+.manufacturer-value button {
+  background-color: #ff4d4d;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.manufacturer-value button:hover {
+  background-color: #ff3333;
+  transform: translateY(-2px);
+}
+
+.manufacturer-value:hover {
+  background-color: #f1f1f1;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.add-info {
+  display: inline-block;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  background-color: #ff6347;
+
+  // Hiệu ứng hover
+  &:hover {
+    background-color: #ff6347;
+    transform: translateY(-2px);
+  }
+}

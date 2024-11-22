@@ -1,0 +1,43 @@
+.main-home-cart {
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  img {
+  }
+  .title {
+    display: block;
+    margin-top: 20px;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 120%;
+    text-align: center;
+    color: #3a3a3a;
+  }
+  .main-home-cart-content {
+    display: grid;
+    grid-template-columns: repeat(4, 2fr);
+    gap: 25px;
+    margin-top: 50px;
+  }
+}
+.card-info {
+  padding: 20px;
+}
+
+.show-all {
+  box-sizing: border-box;
+  background: #ffffff;
+  border: 1px solid #b88e2f;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 150%;
+  color: #b88e2f;
+  padding: 10px 40px;
+  margin-top: 30px;
+  cursor: pointer;
+}

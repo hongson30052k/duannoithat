@@ -1,0 +1,58 @@
+/* Định nghĩa kiểu cho container chính */
+.description {
+  user-select: none;
+  display: flex;
+  justify-content: center; /* Căn giữa menu */
+  padding: 10px 0;
+  background-color: #f4f4f4; /* Màu nền cho thanh menu */
+  border-radius: 30px; /* Bo góc cho container */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Bóng đổ nhẹ cho thanh menu */
+  margin: 20px auto; /* Căn giữa toàn bộ thanh menu */
+}
+
+.menu-list {
+  margin: 0 15px;
+}
+
+.menu {
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #555;
+  background-color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.menu:hover {
+  background-color: #007bff;
+  color: white;
+  transform: translateY(-3px);
+}
+
+.menu.active {
+  background-color: #007bff;
+  color: white;
+  border: 2px solid #0056b3;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  transform: scale(1.1);
+}
+
+.menu.active::after {
+  content: "✔";
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: white;
+}
+
+.description-text {
+  margin: 0 300px;
+}

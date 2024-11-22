@@ -1,0 +1,59 @@
+.specification {
+  margin-bottom: 30px;
+  .specification-address {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+    .specification-title {
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 800;
+      font-size: 20px;
+      line-height: 24px;
+      color: #3a3a3a;
+    }
+    .specification-phone {
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 24px;
+      color: red;
+    }
+    .specification-time {
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 24px;
+      color: #3a3a3a;
+    }
+  }
+  .specification-content {
+    .specification-info {
+      width: 100%;
+      padding: 10px;
+      display: flex;
+      background-color: antiquewhite;
+      gap: 20px;
+      .specification-title {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 800;
+        font-size: 18px;
+        line-height: 24px;
+        color: #3a3a3a;
+      }
+      .specification-content {
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 24px;
+        color: #3a3a3a;
+      }
+    }
+  }
+}

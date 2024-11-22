@@ -1,0 +1,237 @@
+.product-list {
+  user-select: none;
+}
+
+.product-list-content {
+  display: flex;
+  justify-content: center;
+  padding: 50px;
+  background-color: #ffffff;
+  margin: 20px 400px;
+  gap: 50px;
+
+  .product-list-img2 {
+    position: relative;
+    width: 600px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+  }
+  .product-list-info {
+    .text-title {
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 42px;
+      line-height: 63px;
+      color: #000000;
+    }
+    .text-price {
+      display: block;
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 500;
+      font-size: 24px;
+      line-height: 36px;
+      color: #9f9f9f;
+    }
+    .text-muted {
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 19px;
+      line-height: 20px;
+      color: #000000;
+      margin: 30px 0px;
+    }
+    .text-size {
+      display: block;
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 21px;
+      color: #9f9f9f;
+      margin-top: 15px;
+    }
+    .size-list {
+      margin-top: 12px;
+      display: flex;
+      gap: 10px;
+      span {
+        text-align: center;
+        width: 24px;
+        height: 24px;
+        background-color: #9f9f9f;
+      }
+    }
+    .text-color {
+      margin-top: 20px;
+      display: block;
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 21px;
+      color: #9f9f9f;
+    }
+    .color-list {
+      margin-top: 12px;
+      display: flex;
+      gap: 10px;
+      div {
+        width: 30px;
+        height: 30px;
+        background: #816dfa;
+        border-radius: 50px;
+      }
+    }
+    .product-list-button {
+      margin-top: 50px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      .product-list-quantity {
+        display: flex;
+        box-sizing: border-box;
+        height: 64px;
+        background: #ffffff;
+        border: 1px solid #9f9f9f;
+        border-radius: 10px;
+        justify-content: space-around;
+        align-items: center;
+      }
+      .btn-add {
+        width: 215px;
+        height: 64px;
+        font-family: "Poppins";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 30px;
+        color: #000000;
+      }
+    }
+    .border-style {
+      border: 1px solid #9f9f9f;
+      margin-top: 50px;
+    }
+  }
+}
+
+.product-list-img {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 400px;
+  gap: 20px;
+  width: 600px;
+  img {
+    width: 76px;
+    height: 80px;
+  }
+}
+.size-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+.size-item {
+  font-size: 16px;
+  padding: 8px 12px;
+  text-align: center;
+  margin: 5px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.size-item:hover {
+  background-color: #f0f0f0; /* Hiệu ứng hover */
+}
+
+.size-item.active {
+  color: white;
+  background-color: red;
+  border-color: red;
+  transform: scale(1.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.size-item:hover {
+  background-color: #4caf50;
+  color: white;
+  border-color: #4caf50;
+}
+.color-container {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+  user-select: none;
+}
+
+.color-item {
+  padding: 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+  text-align: center;
+  width: 50px;
+  height: 50px;
+}
+
+.color-item:hover {
+  transform: scale(1.1); /* Hiệu ứng phóng to khi hover */
+}
+
+.color-item.active {
+  transform: scale(1.2); /* Phóng to thêm khi phần tử được click */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Thêm bóng đổ khi chọn */
+  border: 3px solid red; /* Thêm border khi phần tử active */
+}
+
+.color-item.active::after {
+  content: "✔";
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  color: green;
+  font-size: 16px;
+}
+.text-price-original {
+  text-decoration: line-through;
+  color: #888;
+  font-size: 14px;
+}
+
+.text-percent-discount {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 10px;
+  right: 10px;
+  background-color: #e74c3c; /* Màu đỏ tươi cho giảm giá */
+  color: white; /* Chữ màu trắng để nổi bật */
+  font-size: 18px; /* Kích thước chữ */
+  font-weight: bold; /* Đậm chữ để dễ nhận diện */
+  padding: 5px 15px; /* Thêm padding để làm cho phần trăm giảm giá có khoảng cách thoải mái */
+  border-radius: 25px; /* Bo tròn góc cho đẹp */
+  text-align: center; /* Căn giữa văn bản */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Thêm bóng đổ nhẹ cho phần trăm */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hiệu ứng khi hover */
+}
+
+.text-percent-discount span {
+  display: inline-block; /* Đảm bảo span không bị giãn ra */
+}
+
+.text-percent-discount:hover {
+  transform: translateY(-5px); /* Di chuyển lên khi hover */
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2); /* Tăng độ bóng khi hover */
+}

@@ -1,0 +1,194 @@
+/* Container for the form */
+div {
+  //    width: 80%  ;
+  // height: 120vh;
+}
+
+.form-profile {
+  height: 120vh;
+  padding: 50px;
+}
+
+/* Label styles */
+.label-profile {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: #333; /* Màu chữ tối hơn cho dễ đọc */
+}
+
+/* Input styles */
+.input-profile[type="text"] {
+  width: 100%;
+  padding: 12px 15px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  font-size: 16px; /* Kích thước chữ */
+  font-family: Arial, sans-serif; /* Phông chữ */
+}
+
+/* Focus styles for inputs */
+input[type="text"]:focus {
+  border-color: #66afe9; /* Màu viền khi tập trung */
+  outline: none; /* Xóa viền mặc định */
+  box-shadow: 0 0 5px rgba(102, 175, 233, 0.5); /* Hiệu ứng bóng khi tập trung */
+}
+
+/* Hover styles for inputs */
+input[type="text"]:hover {
+  border-color: #999; /* Màu viền khi di chuột qua */
+}
+
+.button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Hover effect for button */
+button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+/* Thông báo lỗi (nếu cần) */
+.error-message {
+  color: #d9534f; /* Màu đỏ cho thông báo lỗi */
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+.register-link:hover {
+  text-decoration: underline;
+}
+.btn {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition: background-color 0.3s, transform 0.2s;
+  cursor: pointer;
+  user-select: none;
+}
+
+.btn:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+.btn:active {
+  background-color: #397d3a;
+  transform: scale(0.95);
+}
+
+.btn-logout {
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition: background-color 0.3s, transform 0.2s;
+  cursor: pointer;
+  user-select: none;
+  position: absolute;
+  top: 100px;
+  right: 20px;
+}
+
+.confirmation-box {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Nội dung hộp xác nhận */
+.confirmation-content {
+  background: linear-gradient(
+    135deg,
+    #4e73df,
+    #1cc88a
+  ); /* Màu gradient đẹp mắt */
+  padding: 30px 40px;
+  border-radius: 10px;
+  text-align: center;
+  width: 100%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  color: #fff;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Tiêu đề câu hỏi xác nhận */
+.confirmation-content p {
+  font-size: 18px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+/* Nút hành động */
+button {
+  padding: 12px 25px;
+  font-size: 16px;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:first-child {
+  background-color: #e74a3b; /* Màu đỏ cho "Đồng ý" */
+  color: white;
+}
+
+button:last-child {
+  background-color: #2e3b8d; /* Màu xanh cho "Hủy" */
+  color: white;
+}
+
+/* Hiệu ứng hover cho các nút */
+button:hover {
+  transform: scale(1.05);
+}
+
+button:active {
+  transform: scale(1);
+}
+
+/* Nút "Đồng ý" khi hover */
+button:first-child:hover {
+  background-color: #c0392b;
+}
+
+/* Nút "Hủy" khi hover */
+button:last-child:hover {
+  background-color: #1d2557;
+}
+
+/* Khi người dùng chưa tương tác với nút */
+button:focus {
+  outline: none;
+}

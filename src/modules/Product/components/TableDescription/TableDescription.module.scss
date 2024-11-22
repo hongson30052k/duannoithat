@@ -1,0 +1,89 @@
+/* Container for the whole product information block */
+.product-info-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 20px;
+  background-color: #f7f7f7; /* Nền sáng nhẹ */
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05); /* Bóng nhẹ */
+  margin: 20px 0;
+}
+
+/* Individual information item styling */
+.info-item {
+  display: flex;
+  align-items: center;
+  background-color: #ffffff; /* Nền trắng tinh khiết */
+  padding: 12px 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Bóng nhẹ */
+  transition: all 0.3s ease;
+}
+
+.info-item:hover {
+  transform: translateY(-5px); /* Nâng lên khi hover */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1); /* Tăng độ bóng khi hover */
+}
+
+/* Label styling */
+.label {
+  font-size: 16px;
+  font-weight: 600;
+  color: #4a4a4a; /* Màu xám đậm nhẹ nhàng */
+  width: 200px; /* Độ rộng cố định cho nhãn */
+  margin-right: 20px;
+}
+
+/* Value styling */
+.value {
+  font-size: 16px;
+  color: #6a6a6a; /* Màu xám nhạt để dễ đọc */
+  line-height: 1.5;
+  flex-grow: 1;
+}
+
+/* Styling for product description items (displayed as a list) */
+.product-description {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+.product-description-item {
+  font-size: 14px;
+  color: #5c5c5c; /* Màu xám trung tính */
+  background-color: #e9f7ff; /* Nền xanh nhạt nhẹ nhàng */
+  padding: 8px 15px;
+  border-radius: 6px;
+  margin-bottom: 10px;
+  border-left: 4px solid #7fbcf9; /* Đường viền xanh dịu */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05); /* Bóng nhẹ */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-description-item:hover {
+  transform: translateX(5px); /* Di chuyển nhẹ khi hover */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Tăng độ bóng khi hover */
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .info-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .label {
+    margin-right: 0;
+    margin-bottom: 8px;
+  }
+
+  .value {
+    margin-bottom: 12px;
+  }
+
+  .product-description {
+    flex-direction: column; /* Các mô tả vẫn theo cột */
+  }
+}

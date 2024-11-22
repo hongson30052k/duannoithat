@@ -1,0 +1,42 @@
+.cart-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Căn giữa chính xác màn hình */
+  background-color: #f8d7da; /* Màu nền hồng nhạt cho thông báo */
+  color: #721c24; /* Màu chữ đỏ đậm cho thông báo */
+  border: 1px solid #f5c6cb; /* Đường viền màu đỏ nhạt */
+  padding: 20px 30px; /* Khoảng cách trong khối */
+  border-radius: 10px; /* Bo góc nhẹ */
+  font-size: 1.2rem; /* Kích thước chữ vừa phải */
+  font-weight: 500; /* Đậm vừa đủ để nổi bật */
+  text-align: center; /* Căn giữa chữ */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Bóng nhẹ phía dưới */
+  opacity: 0;
+  animation: fadeIn 0.5s ease-out forwards; /* Hiệu ứng mờ dần */
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.cart-message span {
+  font-size: 1.4rem; /* Chữ lớn để dễ đọc */
+  letter-spacing: 1px;
+  text-transform: uppercase; /* Chữ in hoa */
+}
+
+/* Hiệu ứng khi hover vào thông báo */
+.cart-message:hover {
+  background-color: #f5c6cb; /* Màu nền nhạt hơn khi hover */
+  border-color: #f1b0b7; /* Đường viền nhạt hơn */
+  transform: translate(-50%, -50%) scale(1.05); /* Phóng to nhẹ khi hover */
+}

@@ -1,0 +1,228 @@
+.checkoutPage {
+  font-family: "Roboto", sans-serif;
+  padding: 20px;
+  background-color: #f8f8f8;
+  min-height: 100vh;
+}
+
+h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.checkoutForm {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  padding: 50px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.cartDetails {
+  margin-bottom: 30px;
+}
+
+.cartDetails h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.cartItems {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cartItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Đổ bóng nhẹ */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Thêm hiệu ứng khi hover */
+  margin-bottom: 15px; /* Khoảng cách giữa các item */
+  cursor: pointer; /* Con trỏ khi hover */
+}
+
+.cartItem:hover {
+  transform: translateY(-5px); /* Di chuyển nhẹ lên khi hover */
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Đổ bóng đậm hơn khi hover */
+}
+
+.productImage {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-right: 20px;
+}
+
+.productInfo {
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.productInfo p {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+  font-size: 1.6rem;
+  color: #555;
+}
+
+.productInfo p:first-child {
+  font-weight: 600;
+  color: #333;
+}
+
+.productInfo p:nth-child(2) {
+  color: #777; /* Màu sắc nhạt hơn cho số lượng */
+}
+
+.productPrice {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #ff5722; /* Màu cam nổi bật cho giá */
+}
+
+.cartItemButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ff5722;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 500;
+  padding: 8px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border: none;
+  margin-left: 15px;
+}
+
+.cartItemButton:hover {
+  background-color: #e64a19;
+}
+
+.cartItemButton:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.totalAmount {
+  margin-bottom: 30px;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.totalAmount p {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #ff5722;
+}
+
+.userInfo {
+  margin-bottom: 40px;
+}
+
+.userInfo h3 {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+label {
+  display: block;
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+input[type="text"],
+input[type="email"],
+select {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.5rem;
+  margin-top: 8px;
+  background-color: #f9f9f9;
+}
+
+select {
+  cursor: pointer;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+select:focus {
+  outline: none;
+  /* Chỉ thêm hiệu ứng khi focus */
+  box-shadow: 0 0 5px rgba(255, 87, 34, 0.8); /* Thêm hiệu ứng shadow thay vì border */
+}
+
+.paymentMethod {
+  margin-bottom: 30px;
+}
+
+.paymentMethod select {
+  padding: 12px;
+  font-size: 1.5rem;
+  border-radius: 8px;
+  border: none;
+  width: 100%;
+  background-color: #f9f9f9;
+}
+
+.checkoutButton {
+  display: flex;
+  justify-content: center;
+}
+
+.checkoutButton button {
+  padding: 15px 35px;
+  font-size: 1.5rem;
+  background-color: #ff5722;
+  color: white;
+  border: none; /* Không có border */
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.checkoutButton button:hover {
+  background-color: #e64a19;
+}
+
+@media (max-width: 768px) {
+  .checkoutForm {
+    padding: 15px;
+  }
+
+  .cartItem {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .productImage {
+    margin-bottom: 15px;
+  }
+
+  .productInfo {
+    padding-left: 0;
+  }
+}

@@ -1,0 +1,27 @@
+.home-footter {
+  width: 100%;
+  height: 721px;
+  margin: 100px 0 20px;
+  .home-footter-content {
+    position: relative;
+    top: -60px;
+    .text {
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 150%;
+      text-align: center;
+      color: #616161;
+    }
+    .title {
+      font-family: "Poppins";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 40px;
+      line-height: 120%;
+      text-align: center;
+      color: #3a3a3a;
+    }
+  }
+}

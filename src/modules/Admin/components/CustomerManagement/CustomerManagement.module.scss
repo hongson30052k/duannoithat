@@ -1,0 +1,114 @@
+/* Container chính */
+.container-user {
+  min-width: 1100px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Tiêu đề */
+.container-user h1 {
+  font-size: 32px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Bảng khách hàng */
+.customerTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+/* Các tiêu đề trong bảng */
+.customerTable th {
+  background-color: #4caf50;
+  color: white;
+  padding: 12px 20px;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 500;
+  //   border-radius: 6px;
+}
+
+/* Các dòng trong bảng */
+.customerTable td {
+  padding: 12px 20px;
+  text-align: left;
+  font-size: 14px;
+  color: #555;
+  border-bottom: 1px solid #ddd;
+}
+
+.customerTable td button {
+  padding: 8px 16px;
+  font-size: 14px;
+  color: white;
+  background-color: #f44336;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Nút Xóa trong bảng */
+.customerTable td button:hover {
+  background-color: #e53935;
+  transform: translateY(-3px);
+}
+
+/* Hiệu ứng hover cho các dòng trong bảng */
+.customerTable tbody tr:hover {
+  background-color: #f1f1f1;
+  transform: translateY(-1px);
+  transition: all 0.2s ease-in-out;
+}
+
+/* Border dưới mỗi dòng trong bảng */
+.customerTable tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Thêm padding cho bảng để tránh rìa */
+.customerTable {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Style cho mỗi cột trong bảng */
+.customerTable td:first-child,
+.customerTable th:first-child {
+  width: 5%;
+}
+
+.customerTable td:nth-child(2),
+.customerTable th:nth-child(2) {
+  width: 30%;
+}
+
+.customerTable td:nth-child(3),
+.customerTable th:nth-child(3) {
+  width: 30%;
+}
+
+.customerTable td:nth-child(4),
+.customerTable th:nth-child(4) {
+  width: 20%;
+}
+
+.customerTable td:nth-child(5),
+.customerTable th:nth-child(5) {
+  width: 15%;
+}
+
+.img-data {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}

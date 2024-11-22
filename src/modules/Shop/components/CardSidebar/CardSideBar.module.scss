@@ -1,0 +1,210 @@
+// sidebar.scss
+
+.sidebar-shop {
+  margin: 45px 0 35px;
+  user-select: none;
+  width: 20%;
+  background-color: #2d3436;
+  color: #ffffff; /* Màu chữ trắng cho sidebar */
+  padding: 30px 20px; /* Khoảng cách lề bên trong sidebar */
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Khoảng cách giữa các mục */
+  box-shadow: 4px 0px 10px rgba(0, 0, 0, 0.1); /* Bóng đổ nhẹ cho sidebar */
+
+  /* Thêm hiệu ứng khi hover vào sidebar */
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: #34495e; /* Thay đổi màu khi hover vào sidebar */
+  }
+}
+
+// Định dạng cho từng item trong sidebar
+.sidebar-item {
+  font-size: 16px; /* Kích thước chữ */
+  font-weight: 500; /* Độ đậm chữ */
+  color: #bdc3c7; /* Màu chữ nhạt */
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer; /* Con trỏ chuột chuyển thành pointer khi hover */
+  transition: all 0.3s ease; /* Hiệu ứng mượt khi hover */
+
+  &:hover {
+    background-color: #007bff; /* Màu nền khi hover */
+    color: #ffffff; /* Màu chữ khi hover */
+  }
+
+  &.active {
+    background-color: #27ae60; /* Màu nền khi mục đang active */
+    color: #fff; /* Màu chữ khi active */
+    font-weight: 600; /* Đậm chữ khi active */
+  }
+
+  /* Đường viền dưới mỗi item */
+  &:not(:last-child) {
+    border-bottom: 1px solid #34495e;
+  }
+}
+
+// Thêm hiệu ứng khi sidebar bị hover
+.sidebar-shop:hover .sidebar-item {
+  transform: translateX(5px); /* Di chuyển nhẹ sang phải khi hover */
+}
+
+/* sidebar-title.scss */
+
+.sidebar-title {
+  font-size: 22px; /* Kích thước chữ lớn hơn cho tiêu đề */
+  font-weight: 700; /* Độ đậm chữ */
+  color: #fff; /* Màu chữ trắng */
+  text-transform: uppercase; /* Chữ viết hoa tất cả */
+  letter-spacing: 2px; /* Khoảng cách giữa các chữ */
+  padding: 10px 15px; /* Khoảng cách padding cho tiêu đề */
+  margin-bottom: 20px; /* Khoảng cách dưới tiêu đề */
+  background-color: #1e2a3a; /* Màu nền tối cho tiêu đề */
+  border-radius: 5px; /* Bo góc cho tiêu đề */
+  display: inline-block; /* Hiển thị như một khối inline */
+  position: relative; /* Để có thể tạo hiệu ứng đặc biệt */
+  text-align: center; /* Căn giữa nội dung */
+  transition: all 0.3s ease-in-out; /* Thêm hiệu ứng chuyển động mượt mà */
+  background-color: #007bff;
+
+  /* Hiệu ứng khi hover */
+  // &:hover {
+  //   background-color: #007bff; /* Đổi màu nền khi hover */
+  //   color: #fff; /* Đổi màu chữ thành trắng khi hover */
+  //   transform: scale(1.05); /* Tăng kích thước nhẹ khi hover */
+  //   box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3); /* Thêm bóng đổ nhẹ khi hover */
+  // }
+
+  /* Hiệu ứng đổ bóng xung quanh */
+  // &::before {
+  //   content: "";
+  //   position: absolute;
+  //   top: 0;
+  //   left: 0;
+  //   width: 100%;
+  //   height: 3px;
+  //   background-color: #007bff; /* Màu sắc đường viền trên */
+  //   border-radius: 5px;
+  //   transform: scaleX(0);
+  //   transition: transform 0.3s ease;
+  // }
+
+  /* Khi hover, xuất hiện đường viền */
+  &:hover::before {
+    transform: scaleX(1);
+  }
+}
+
+.price-filter {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+  font-family: "Roboto", sans-serif;
+  color: #2d3436;
+
+  label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      border: 2px solid #bbb;
+      accent-color: #007bff;
+      transition: all 0.2s ease;
+
+      &:checked {
+        border-color: #007bff;
+        background-color: #007bff;
+      }
+
+      &:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+      }
+    }
+
+    span {
+      font-size: 16px;
+      color: #333;
+      transition: color 0.2s ease;
+    }
+
+    &:hover {
+      input[type="checkbox"] {
+        border-color: #007bff;
+        background-color: #007bff;
+      }
+
+      span {
+        color: #007bff;
+        cursor: pointer;
+      }
+    }
+  }
+
+  padding: 16px;
+  border: 1px solid #f1f1f1;
+  border-radius: 8px;
+  background-color: #fafafa;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    background-color: #f9f9f9;
+  }
+}
+
+.sidebar-title-filter {
+  font-family: "Roboto", sans-serif; // Chọn font chữ hiện đại và dễ đọc
+  font-size: 18px; // Kích thước chữ vừa phải
+  font-weight: 600; // Tạo độ đậm vừa phải cho tiêu đề
+  color: #ffffff; // Màu chữ trắng cho tiêu đề
+  text-transform: uppercase; // Chữ in hoa cho tiêu đề
+  letter-spacing: 1px; // Tăng khoảng cách giữa các chữ cái để tạo cảm giác rộng rãi
+  margin-bottom: 20px; // Khoảng cách dưới tiêu đề để không bị sát vào phần tiếp theo
+  position: relative; // Để có thể thêm các hiệu ứng như đường gạch dưới hoặc icon nếu cần
+  transition: color 0.3s ease, transform 0.3s ease; // Hiệu ứng mượt mà khi thay đổi màu và khi hover
+  background-color: #007bff;
+  padding: 10px 15px;
+  border-radius: 5px;
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px; // Độ dày của đường gạch dưới
+    background-color: #007bff; // Màu xanh dương cho đường gạch dưới
+    transform: scaleX(0); // Ban đầu đường gạch dưới không hiện
+    transition: transform 0.3s ease; // Hiệu ứng khi di chuột vào
+  }
+
+  // Hiệu ứng khi hover vào tiêu đề
+  &:hover {
+    color: #007bff; // Đổi màu chữ thành xanh khi hover
+    transform: translateX(
+      5px
+    ); // Đẩy tiêu đề sang phải một chút khi hover (hiệu ứng nhẹ)
+
+    &::after {
+      transform: scaleX(1); // Hiện đường gạch dưới khi hover
+    }
+  }
+
+  // Responsive: Nếu kích thước màn hình nhỏ, giảm kích thước font
+  @media (max-width: 768px) {
+    font-size: 16px;
+    margin-bottom: 16px;
+  }
+}

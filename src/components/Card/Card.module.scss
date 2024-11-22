@@ -1,0 +1,203 @@
+// Biến màu sắc và kích thước
+$primary-color: #ff7f50; // Cam sáng, màu chính
+$secondary-color: #ff4d4d; // Màu đỏ cho khuyến mãi
+$neutral-dark: #333; // Màu đen cho tiêu đề và văn bản
+$neutral-medium: #777; // Màu xám nhạt cho mô tả
+$neutral-light: #eee; // Màu nền nhẹ cho các border
+$white: #fff; // Màu trắng cho nền và text
+$hover-bg-color: #ff5722; // Màu hover cho nút
+$font-size-base: 14px; // Kích thước font mặc định
+$font-size-title: 18px; // Kích thước font tiêu đề
+$font-size-price: 16px; // Kích thước font giá
+$font-size-discount: 14px; // Kích thước font cho giảm giá
+$transition-duration: 0.3s; // Thời gian chuyển động
+
+// Card Container
+.card {
+  width: 300px;
+  background-color: $white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform $transition-duration ease,
+    box-shadow $transition-duration ease, opacity $transition-duration ease;
+  position: relative;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  }
+
+  // Discount Badge
+  .card-percent-discount {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: $secondary-color;
+    color: $white;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: $font-size-discount;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  // Image Styling
+  img {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    border-bottom: 2px solid $neutral-light;
+    transition: opacity $transition-duration ease;
+
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+
+  // Card Info Section
+  .card-info {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 160px;
+    transition: color $transition-duration ease;
+
+    .card-title {
+      font-size: $font-size-title;
+      font-weight: bold;
+      color: $neutral-dark;
+      margin-bottom: 10px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .card-text {
+      font-size: $font-size-base;
+      color: $neutral-medium;
+      margin-bottom: 10px;
+      line-height: 1.4;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .card-price-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .card-price {
+        font-size: $font-size-price;
+        font-weight: bold;
+        color: $neutral-dark;
+      }
+
+      .card-price-discount {
+        font-size: $font-size-discount;
+        color: $neutral-medium;
+        text-decoration: line-through;
+      }
+    }
+  }
+
+  // Button Section
+  .card-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    border-top: 1px solid $neutral-light;
+    background-color: $white;
+    box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color $transition-duration ease;
+
+    .btn {
+      background-color: $primary-color;
+      color: $white;
+      font-weight: bold;
+      padding: 12px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: background-color $transition-duration ease,
+        transform $transition-duration ease;
+
+      &:hover {
+        background-color: $hover-bg-color;
+        transform: scale(1.05);
+      }
+    }
+
+    // Icon Buttons
+    .card-icon {
+      display: flex;
+      align-items: center;
+
+      .card-button-icon {
+        display: flex;
+        align-items: center;
+        margin-right: 15px;
+        color: $neutral-medium;
+        text-decoration: none;
+        transition: color $transition-duration ease,
+          transform $transition-duration ease;
+
+        &:hover {
+          color: $primary-color;
+          transform: scale(1.1);
+        }
+
+        .card-button-icon-text {
+          margin-left: 5px;
+          font-size: $font-size-base;
+          color: $neutral-medium;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+      }
+    }
+  }
+}
+
+// Mobile Responsiveness
+@media (max-width: 600px) {
+  .card {
+    width: 100%;
+    margin: 10px;
+  }
+
+  .card-info {
+    padding: 10px;
+  }
+
+  .card-title {
+    font-size: 16px;
+  }
+
+  .card-text {
+    font-size: 12px;
+  }
+
+  .card-price-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .card-price {
+    font-size: 14px;
+  }
+
+  .card-price-discount {
+    font-size: 12px;
+  }
+
+  .card-button {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}
