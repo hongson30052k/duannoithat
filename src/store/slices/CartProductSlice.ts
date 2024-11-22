@@ -5,6 +5,7 @@ import {
   PayloadAction,
 } from "@reduxjs/toolkit";
 import { axiosInstance } from "../../api/axiosClient";
+import { boolean, number } from "yup";
 
 interface IInitialState {
   card: any[];
@@ -555,6 +556,25 @@ export const cartProductSlice = createSlice({
       state.status = !state.status;
     });
     builder.addCase(fetchEditProduct.rejected, (state, action) => {});
+    builder.addCase(fetchGetPriceUnder1000k.pending, (state, action) => {});
+    builder.addCase(fetchGetPriceUnder1000k.fulfilled, (state, action) => {
+      state.status = action.payload;
+    });
+    builder.addCase(fetchGetPriceUnder1000k.rejected, (state, action) => {});
+    builder.addCase(
+      fetchGetPriceFrom1mto5mCateGory.pending,
+      (state, action) => {}
+    );
+    builder.addCase(
+      fetchGetPriceFrom1mto5mCateGory.fulfilled,
+      (state, action) => {
+        state.status = action.payload;
+      }
+    );
+    builder.addCase(
+      fetchGetPriceFrom1mto5mCateGory.rejected,
+      (state, action) => {}
+    );
   },
 });
 

@@ -38,6 +38,7 @@ const CardContent = () => {
     searchInputValue,
     search,
     searchValue,
+    status,
   } = useSelector((state: RootState) => state.cartProductState);
   // console.log(productOptionId, "ppppppppppppp");
   // Lấy dữ liệu sản phẩm tìm kiếm
@@ -228,7 +229,12 @@ const CardContent = () => {
     if (search === null) {
       fetchData();
     }
-  }, [productOptionId, checked, checkedPrice, currentPage]);
+  }, [status]);
+  useEffect(() => {
+    if (search === null) {
+      fetchData();
+    }
+  }, [checkedPrice, checked]);
   // hàm thay đổi currentPage về 1 khi click vào mỗi check
   useEffect(() => {
     setCurrentPage(1);
