@@ -7,6 +7,7 @@ import {
   fetchProductOptions,
   getIdProductOption,
   searchStatus,
+  setStatusCheck,
 } from "../../../../store/slices/CartProductSlice";
 import { priceFilter, PriceFilter } from "./priceFilter";
 import SearchInput from "../SearchInput/SearchInput";
@@ -39,6 +40,7 @@ const CardSideBar = () => {
         return isChecked;
       }
     });
+    await dispatch(setStatusCheck(null));
   };
   // hàm lấy giá trị index khi click vào menu category
   const onClickMenu = async (index: number) => {

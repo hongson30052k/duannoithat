@@ -38,13 +38,13 @@ const CardContent = () => {
     searchInputValue,
     search,
     searchValue,
-    status,
+    statusCheck,
   } = useSelector((state: RootState) => state.cartProductState);
   // console.log(productOptionId, "ppppppppppppp");
   // Lấy dữ liệu sản phẩm tìm kiếm
   console.log(
-    search,
-    "search............................................................"
+    statusCheck,
+    "statuscheck............................................................"
   );
   console.log(
     searchInputValue,
@@ -118,6 +118,7 @@ const CardContent = () => {
                 break;
             }
           } else {
+            // setCurrentPage(1);
             await dispatch(setLoading(true));
             const resTotal: any = await dispatch(fetchCartProductAPI());
             setTotalPages(resTotal?.payload?.length);
@@ -205,6 +206,9 @@ const CardContent = () => {
       console.error("Error fetching data:", error);
     }
   };
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [statusCheck]);
   // Show sản phẩm theo tìm kiếm trên thanh input khi click
   useEffect(() => {
     if (search === "search") {
@@ -229,16 +233,18 @@ const CardContent = () => {
     if (search === null) {
       fetchData();
     }
-  }, [status]);
+  }, [checked]);
   useEffect(() => {
     if (search === null) {
       fetchData();
     }
-  }, [checkedPrice, checked]);
-  // hàm thay đổi currentPage về 1 khi click vào mỗi check
-  useEffect(() => {
-    setCurrentPage(1);
   }, [checkedPrice]);
+  useEffect(() => {
+    if (search === null) {
+      fetchData();
+    }
+  }, [statusCheck]);
+  // hàm thay đổi currentPage về 1 khi click vào mỗi check
 
   // hàm này dùng để show sp theo category hoặc tìm kiếm
   useEffect(() => {

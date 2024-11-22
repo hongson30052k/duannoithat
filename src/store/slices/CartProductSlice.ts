@@ -20,6 +20,7 @@ interface IInitialState {
   productOptionId: number;
   checkedPrice: number;
   checked: boolean;
+  statusCheck: number;
   searchInputValue: string;
   search: null | string;
   searchValue: string;
@@ -40,6 +41,7 @@ const initialState: IInitialState = {
   productOptionId: 0,
   checkedPrice: 0,
   checked: false,
+  statusCheck: 0,
   searchInputValue: "",
   search: null,
   searchValue: "",
@@ -461,6 +463,9 @@ export const cartProductSlice = createSlice({
     setShowModalEdit: (state = initialState, action: PayloadAction<any>) => {
       state.ShowModalEdit = action.payload;
     },
+    setStatusCheck: (state = initialState, action: PayloadAction<any>) => {
+      state.statusCheck = state.statusCheck + 1;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchCartProductAPI.pending, (state, action) => {});
@@ -579,6 +584,7 @@ export const cartProductSlice = createSlice({
 });
 
 export const {
+  setStatusCheck,
   getProductId,
   getIdProductOption,
   checkeds,
