@@ -25,7 +25,7 @@ import { Box, LinearProgress } from "@mui/material";
 const cx = classNames.bind(styles);
 
 const CardContent = () => {
-  const limit = 8;
+  const limit = 4;
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const dispatch = useDispatch();
@@ -40,40 +40,36 @@ const CardContent = () => {
     searchValue,
     statusCheck,
   } = useSelector((state: RootState) => state.cartProductState);
-  // console.log(productOptionId, "ppppppppppppp");
   // Lấy dữ liệu sản phẩm tìm kiếm
-  console.log(
-    statusCheck,
-    "statuscheck............................................................"
-  );
-  console.log(
-    searchInputValue,
-    "searchValue............................................................"
-  );
-  const fetchDataSearch = async () => {
+  const fetchDataSearch = async (payload: any) => {
+    console.log(payload, "ppppppppppppp");
     try {
       await dispatch(setLoading(true));
       const resTotal: any = await dispatch(
-        fetchSearchProducts({ searchValue })
+        fetchSearchProducts({ searchValue: payload?.search })
       );
-      console.log(resTotal, "resTotal");
-      console.log(resTotal, "resTotal11111111111111111111111111111");
-      setTotalPages(resTotal?.payload?.length);
+
       const Cards: any = await dispatch(
         fetchSearchProductsPage({
-          value: searchValue,
-          currentPage,
-          limit,
+          value: payload?.search,
+          currentPage: payload?.currentPage,
+          limit: payload?.limit,
         })
       );
       setCard(Cards?.payload);
+      setTotalPages(resTotal?.payload?.length);
       await dispatch(setLoading(false));
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
   // Lấy dữ liệu sản phẩm category
-  const fetchData = async () => {
+  const fetchData = async (payload: any) => {
+    const productOptionId = payload?.productOptionId;
+    const checkedPrice = payload?.checkedPrice;
+    const checked = payload?.checked;
+    const currentPage = payload?.currentPage;
+    const limit = payload?.limit;
     try {
       switch (productOptionId) {
         case 0: {
@@ -118,10 +114,8 @@ const CardContent = () => {
                 break;
             }
           } else {
-            // setCurrentPage(1);
             await dispatch(setLoading(true));
             const resTotal: any = await dispatch(fetchCartProductAPI());
-            setTotalPages(resTotal?.payload?.length);
             const Cards: any = await dispatch(
               fetchCartProductAPIPage({
                 currentPage,
@@ -129,6 +123,7 @@ const CardContent = () => {
               })
             );
             setCard(Cards?.payload);
+            setTotalPages(resTotal?.payload?.length);
             await dispatch(setLoading(false));
           }
           break;
@@ -206,58 +201,55 @@ const CardContent = () => {
       console.error("Error fetching data:", error);
     }
   };
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [statusCheck]);
-  // Show sản phẩm theo tìm kiếm trên thanh input khi click
-  useEffect(() => {
-    if (search === "search") {
-      fetchDataSearch();
-    }
-  }, [searchValue, currentPage]);
-  // set laị curentPage = 1 khi click vào nút tìm kiếm
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [searchValue]);
-  // set laị curentPage = 1 khi click vào nút tìm kiếm hoặc khi click vào category
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [productOptionId]);
-  // lấy sản phẩm khi thay đổi category
-  useEffect(() => {
-    if (search === null) {
-      fetchData();
-    }
-  }, [productOptionId, currentPage]);
-  useEffect(() => {
-    if (search === null) {
-      fetchData();
-    }
-  }, [checked]);
-  useEffect(() => {
-    if (search === null) {
-      fetchData();
-    }
-  }, [checkedPrice]);
-  useEffect(() => {
-    if (search === null) {
-      fetchData();
-    }
-  }, [statusCheck]);
-  // hàm thay đổi currentPage về 1 khi click vào mỗi check
 
-  // hàm này dùng để show sp theo category hoặc tìm kiếm
   useEffect(() => {
+    console.log("searchValue", searchValue);
+
     if (search === "search") {
-      fetchDataSearch();
+      const payload = {
+        search: searchValue,
+        currentPage: 1,
+        limit: limit,
+      };
+      fetchDataSearch(payload);
     } else {
-      // Nếu không trong chế độ tìm kiếm, lấy sản phẩm theo category
-      fetchData();
+      if (productOptionId !== null) {
+        const payload = {
+          productOptionId: productOptionId,
+          currentPage: 1,
+          limit: limit,
+          checked,
+          checkedPrice,
+        };
+        fetchData(payload);
+      }
     }
-  }, [search]);
+  }, [searchValue, search, productOptionId, checked, checkedPrice]);
+
   const handlePageChange = (page: number) => {
-    setCurrentPage(page);
+    if (search === "search") {
+      const payload = {
+        search: searchValue,
+        currentPage: page,
+        limit: limit,
+      };
+      fetchDataSearch(payload);
+      setCurrentPage(page);
+    } else {
+      if (productOptionId !== null) {
+        const payload = {
+          productOptionId: productOptionId,
+          currentPage: page,
+          limit: limit,
+          checked,
+          checkedPrice,
+        };
+        fetchData(payload);
+        setCurrentPage(page);
+      }
+    }
   };
+
   const data = Array.isArray(card)
     ? card.map((item) => {
         const item1 = cartImg?.find((item2) => item2?.id === item?.id);
@@ -268,7 +260,7 @@ const CardContent = () => {
     <>
       <div className={cx("main-cart")}>
         <div className={cx("main-home-cart-content-show")}>
-          {data &&
+          {data.length > 0 &&
             data?.map((data, index) => {
               return <Card key={index} data={data} />;
             })}
