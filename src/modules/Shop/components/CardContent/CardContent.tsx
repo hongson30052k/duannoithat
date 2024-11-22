@@ -228,7 +228,7 @@ const CardContent = () => {
     if (search === null) {
       fetchData();
     }
-  }, [checked, checkedPrice, currentPage]);
+  }, [productOptionId, checked, checkedPrice, currentPage]);
   // hàm thay đổi currentPage về 1 khi click vào mỗi check
   useEffect(() => {
     setCurrentPage(1);
