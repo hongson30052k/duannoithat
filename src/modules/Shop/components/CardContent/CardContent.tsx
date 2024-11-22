@@ -35,14 +35,11 @@ const CardContent = () => {
     productOptionId,
     checkedPrice,
     checked,
-    searchInputValue,
     search,
     searchValue,
-    statusCheck,
   } = useSelector((state: RootState) => state.cartProductState);
   // Lấy dữ liệu sản phẩm tìm kiếm
   const fetchDataSearch = async (payload: any) => {
-    console.log(payload, "ppppppppppppp");
     try {
       await dispatch(setLoading(true));
       const resTotal: any = await dispatch(
@@ -222,6 +219,7 @@ const CardContent = () => {
           checkedPrice,
         };
         fetchData(payload);
+        setCurrentPage(1);
       }
     }
   }, [searchValue, search, productOptionId, checked, checkedPrice]);

@@ -45,7 +45,6 @@ const CardSideBar = () => {
   // hàm lấy giá trị index khi click vào menu category
   const onClickMenu = async (index: number) => {
     setActiveIndex(index);
-    await dispatch(searchStatus(null));
     await dispatch(getIdProductOption(index));
   };
   // hàm gọi api category

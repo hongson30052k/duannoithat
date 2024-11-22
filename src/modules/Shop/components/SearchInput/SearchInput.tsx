@@ -54,13 +54,17 @@ const SearchInput = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        setLoading(true);
-        const res: any = await dispatch(
-          fetchSearchProductsView({ inputValueCart })
-        );
-        await dispatch(fetchGetImgProduct());
-        setCardSearch(res.payload);
-        setLoading(false);
+        if (inputValueCart.length > 0) {
+          setLoading(true);
+          const res: any = await dispatch(
+            fetchSearchProductsView({ inputValueCart })
+          );
+          await dispatch(fetchGetImgProduct());
+          setCardSearch(res?.payload);
+          setLoading(false);
+        } else {
+          setCardSearch([]);
+        }
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -68,7 +72,7 @@ const SearchInput = () => {
     fetchData();
   }, [inputValueCart]);
   const dataSearch = useMemo(() => {
-    return cardSearch.map((item: Product) => {
+    return cardSearch?.map((item: Product) => {
       const item1 = cartImg?.find((item2) => item2?.id === item?.id);
       return item1 ? { ...item, ...item1 } : item;
     });
