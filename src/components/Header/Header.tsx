@@ -9,7 +9,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import { useEffect, useState } from "react";
 import { fetchGetUserLogin } from "../../store/slices/UserLoginSlice";
-import { LinearProgress } from "@mui/material";
+import { fetchGetUser } from "../../store/slices/UserSlice";
+import { table } from "console";
 
 const cx = classNames.bind(styles);
 const Header = () => {
@@ -22,8 +23,15 @@ const Header = () => {
     (state: RootState) => state.UserLoginState.idUserProduct
   );
   useEffect(() => {
-    dispatch(fetchGetUserLogin());
-    setLoading(false);
+    const fetchData = async () => {
+      try {
+        dispatch(fetchGetUserLogin());
+        setLoading(false);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
   }, [isAuthenticated]);
 
   return (

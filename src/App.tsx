@@ -7,13 +7,22 @@ import LoginPage from "./pages/Login/LoginPage";
 import AdminPage from "./pages/Admin/AdminPage";
 import UserLoginPage from "./pages/UserLogin/UserLoginPage";
 import ProfilePage from "./pages/Profile/ProfilePage";
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { setUserFromLocalStorage } from "./store/slices/UserSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import {
+  fetchGetUser,
+  setUserFromLocalStorage,
+} from "./store/slices/UserSlice";
 import OrderPagePage from "./pages/CheckoutPage/CheckoutPage";
 import ShoppingOrderPage from "./pages/ShoppingOrder.tsx/ShoppingOrderPage";
+import { RootState } from "./store/store";
+import "./App.css";
 
 function App() {
+  const [dataUser, setDataUser] = useState([]);
+  const { isAuthenticated } = useSelector(
+    (state: RootState) => state.userState
+  );
   const dispatch = useDispatch();
   useEffect(() => {
     const userFromLocalStorage = localStorage.getItem("user");
@@ -22,19 +31,42 @@ function App() {
       dispatch(setUserFromLocalStorage(JSON.parse(userFromLocalStorage)));
     }
   }, [dispatch]);
-  // useEffect(() => {
-  //   alert(
-  //     `chào mừng đến với project của mình, kênh project của mình là kênh xây về bán đồ nột thất.
-  //   trang web của mình sẽ có 2 chức năng chính về admin và user.
-  //   - admin sẽ quản lí tài khoản user, quản lí các đơn hàng của user và các chức năng thêm xóa sửa các sản phẩm trong product
-  //   - tài khoản admin: username: hongson, password: 123456
-  //   - user sẽ quản lí tài khoản mình, quản lí các đơn hàng của mình và các chức năng thêm xoá sửa các sản phẩm trong giỏ hàng
-  //   - tài khoản user: username: taikhoan1, password: 123456
-  //   `
-  //   );
-  // }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res: any = await dispatch(fetchGetUser());
+        console.log(res?.payload);
+        setDataUser(res?.payload);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
     <div className="App">
+      {!isAuthenticated && (
+        <table className="tableShowUser">
+          <tr>
+            <th>Username</th>
+            <th>PassWord</th>
+            <th>Trạng thái</th>
+          </tr>
+          {dataUser &&
+            dataUser?.map((user: any) => {
+              return (
+                <tr>
+                  <td>{user?.username}</td>
+                  <td>{user?.password}</td>
+                  <td>{user?.isAdmin ? "Admin" : "User"}</td>
+                  <br />
+                </tr>
+              );
+            })}
+        </table>
+      )}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/shop" element={<ShopPage />} />

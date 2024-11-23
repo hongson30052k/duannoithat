@@ -1,7 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { axiosInstanceUser } from "../../api/axiosClientUser";
 import { axiosInstance } from "../../api/axiosClient";
-import { setLoading } from "./CartProductSlice";
 
 const initialState = {
   users: [],

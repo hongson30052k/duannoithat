@@ -23,13 +23,13 @@ const OrderManagement = () => {
     setIsModalOpen(true);
   };
   const handlePending = async (id: any) => {
-    const res = await dispatch(fetchChangePendingOrderProduct(id));
+    await dispatch(fetchChangePendingOrderProduct(id));
   };
   const handleStatus = async (values: any) => {
-    const res = await dispatch(fetchChangeStatusOrderProduct(values));
+    await dispatch(fetchChangeStatusOrderProduct(values));
   };
   const handleDelete = async (id: any) => {
-    const res = await dispatch(fetchDeleteOrder(id));
+    await dispatch(fetchDeleteOrder(id));
   };
   useEffect(() => {
     dispatch(fetchGetOrder());
@@ -63,7 +63,7 @@ const OrderManagement = () => {
                 <tr key={index}>
                   <td>{item?.id}</td>
                   <td>{item?.name}</td>
-                  <td>{item?.total} VND</td>
+                  <td>{item?.total.toLocaleString()} VND</td>
                   <td>
                     {item?.status === "Pending" && "Chưa xử lý"}
                     {item?.status === "Processing" && "Đang chuẩn bị"}
@@ -133,18 +133,30 @@ const OrderManagement = () => {
                 <ul>
                   <h2>Chi tiết đơn hàng #{itemProduct?.id}</h2>
                   {itemProduct &&
-                    itemProduct?.product.map((item: any, index: number) => (
-                      <li className={cx("modal-item")} key={index}>
-                        <span>
-                          <strong>Tên SP: {item.product.name}</strong>
-                        </span>
-                        <span>Số lượng: {item.quantity}</span>
-                        <span>Giá: {item.product.price} VND</span>
-                        <span>
-                          Tổng: {item.product.price * item.quantity} VND
-                        </span>
-                      </li>
-                    ))}
+                    itemProduct?.product.map((item: any, index: number) => {
+                      const price = Number(item.product.discounted_price);
+                      const totalPrice = Number(
+                        item.product.discounted_price * item.quantity
+                      );
+                      const priceTotal = totalPrice.toLocaleString();
+                      const formatPrice = price.toLocaleString();
+                      return (
+                        <li className={cx("modal-item")} key={index}>
+                          <span>
+                            <strong>Tên SP: {item.product.name}</strong>
+                          </span>
+                          <span>Số lượng: {item.quantity}</span>
+                          <span>
+                            Giá: {formatPrice}
+                            VND
+                          </span>
+                          <span>
+                            Tổng: {priceTotal}
+                            VND
+                          </span>
+                        </li>
+                      );
+                    })}
                 </ul>
                 <button
                   className={cx("close-btn")}
