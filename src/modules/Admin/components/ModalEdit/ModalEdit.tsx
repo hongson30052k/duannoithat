@@ -87,72 +87,72 @@ const ModalEdit: React.FC = () => {
 
   return (
     <Dialog onClose={handleClose} open>
-    <div className={cx("form-container")}>
-      <h2>Chỉnh Sửa Thông Tin Sản Phẩm</h2>
-      <form className={cx("form-group")} onSubmit={formik.handleSubmit}>
-        <label htmlFor="name">Tên sản phẩm</label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          value={formik.values.name}
-          className={cx("form-control")}
-          placeholder="Nhập tên sản phẩm"
-          onChange={formik.handleChange}
-        />
-        {error && <div className={cx("error-message")}>{error}</div>}
-        <label htmlFor="original_price">Giá sản phẩm</label>
-        <input
-          type="text"
-          id="original_price"
-          name="original_price"
-          className={cx("form-control")}
-          placeholder="Nhập giá sản phẩm - giá gốc"
-          value={formik.values.original_price}
-          onChange={formik.handleChange}
-        />
-        {error && <div className={cx("error-message")}>{error}</div>}
-        <div className={cx("form-group")}>
-          <label htmlFor="discounted_price">Giá sản phẩm sau khi giảm</label>
+      <div className={cx("form-container")}>
+        <h2>Chỉnh Sửa Thông Tin Sản Phẩm</h2>
+        <form className={cx("form-group")} onSubmit={formik.handleSubmit}>
+          <label htmlFor="name">Tên sản phẩm</label>
           <input
             type="text"
-            id="discounted_price"
-            name="discounted_price"
+            id="name"
+            name="name"
+            value={formik.values.name}
             className={cx("form-control")}
-            placeholder="Nhập mật khẩu của bạn"
-            value={formik.values.discounted_price}
+            placeholder="Nhập tên sản phẩm"
             onChange={formik.handleChange}
           />
           {error && <div className={cx("error-message")}>{error}</div>}
-        </div>
-        <FileBase type="file" multiple={false} onDone={handleEditImage} />
-        {imgEditProduct ? (
-          <img
-            src={imgEditProduct}
-            alt="Uploaded"
-            style={{ width: "100px", height: "auto", marginTop: "10px" }}
+          <label htmlFor="original_price">Giá sản phẩm</label>
+          <input
+            type="text"
+            id="original_price"
+            name="original_price"
+            className={cx("form-control")}
+            placeholder="Nhập giá sản phẩm - giá gốc"
+            value={formik.values.original_price}
+            onChange={formik.handleChange}
           />
-        ) : (
-          <img
-            src={data?.img}
-            alt="Uploaded"
-            style={{ width: "100px", height: "auto", marginTop: "10px" }}
-          />
-        )}
+          {error && <div className={cx("error-message")}>{error}</div>}
+          <div className={cx("form-group")}>
+            <label htmlFor="discounted_price">Giá sản phẩm sau khi giảm</label>
+            <input
+              type="text"
+              id="discounted_price"
+              name="discounted_price"
+              className={cx("form-control")}
+              placeholder="Nhập mật khẩu của bạn"
+              value={formik.values.discounted_price}
+              onChange={formik.handleChange}
+            />
+            {error && <div className={cx("error-message")}>{error}</div>}
+          </div>
+          <FileBase type="file" multiple={false} onDone={handleEditImage} />
+          {imgEditProduct ? (
+            <img
+              src={imgEditProduct}
+              alt="Uploaded"
+              style={{ width: "100px", height: "auto", marginTop: "10px" }}
+            />
+          ) : (
+            <img
+              src={data?.img}
+              alt="Uploaded"
+              style={{ width: "100px", height: "auto", marginTop: "10px" }}
+            />
+          )}
 
-        <div className="form-group" style={{ marginTop: "20px" }}>
-          <button type="submit" className={cx("submit-button")}>
-            Lưu Thay Đổi
-          </button>
-          <button
-            onClick={() => dispatch(setShowModalEdit(false))}
-            className={cx("submit-button")}
-          >
-            Hủy Thay Đổi
-          </button>
-        </div>
-      </form>
-    </div>
+          <div className="form-group" style={{ marginTop: "20px" }}>
+            <button type="submit" className={cx("submit-button")}>
+              Lưu Thay Đổi
+            </button>
+            <button
+              onClick={() => dispatch(setShowModalEdit(false))}
+              className={cx("submit-button")}
+            >
+              Hủy Thay Đổi
+            </button>
+          </div>
+        </form>
+      </div>
     </Dialog>
   );
 };

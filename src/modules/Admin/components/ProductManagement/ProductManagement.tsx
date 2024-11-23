@@ -106,6 +106,7 @@ const ProductManagement: React.FC = () => {
     validationSchema: Yup.object().shape({
       name: Yup.string().required("Vui lòng nhập tên sản phẩm"),
       original_price: Yup.string().required("Vui lòng nhập giá sản phẩm"),
+      discounted_price: Yup.string().required("Vui lòng nhập giá sản phẩm"),
       category: Yup.number().required("Vui lòng chọn danh mục"),
     }),
     onSubmit: (values) => {
@@ -230,7 +231,7 @@ const ProductManagement: React.FC = () => {
         {formik.touched.name && formik.errors.name ? (
           <div className={cx("error")}> *{formik.errors.name}</div>
         ) : null}
-        <label htmlFor="original_price">Giá sản phẩm</label>
+        <label htmlFor="original_price">Giá gốc</label>
         <input
           type="text"
           id="original_price"
@@ -243,7 +244,7 @@ const ProductManagement: React.FC = () => {
         {formik.touched.original_price && formik.errors.original_price ? (
           <div className={cx("error")}> *{formik.errors.original_price}</div>
         ) : null}
-        <label htmlFor="discounted_price">Giảm giá</label>
+        <label htmlFor="discounted_price">Giá đã giảm</label>
         <input
           type="text"
           id="discounted_price"
@@ -605,7 +606,6 @@ const ProductManagement: React.FC = () => {
               const formatDiscountedPrice = discountedPrice.toLocaleString();
               const formatOriginalPrice = originalPrice.toLocaleString();
               return (
-              
                 <tr key={index}>
                   <th>{index + 1}</th>
                   <th>
@@ -623,19 +623,22 @@ const ProductManagement: React.FC = () => {
                       style={{ width: "50px", height: "50px" }}
                     />
                   </th>
-  
+
                   <th>
-                    <button
+                    <Button
                       onClick={() => {
                         showModalDetail(data.id);
                       }}
                     >
                       Xem chi tiết
-                    </button>
+                    </Button>
                   </th>
-  
+
                   <th>
-                    <Button color="secondary" onClick={() => handDelete(data.id)}>
+                    <Button
+                      color="secondary"
+                      onClick={() => handDelete(data.id)}
+                    >
                       Xóa
                     </Button>
                   </th>
@@ -645,7 +648,7 @@ const ProductManagement: React.FC = () => {
                     </Button>
                   </th>
                 </tr>
-              )
+              );
             })}
             {showModal && (
               <div className={cx("modal-show-description")}>

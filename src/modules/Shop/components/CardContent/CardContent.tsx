@@ -21,11 +21,10 @@ import {
   fetchSearchProductsPage,
   setLoading,
 } from "../../../../store/slices/CartProductSlice";
-import { Box, LinearProgress } from "@mui/material";
 const cx = classNames.bind(styles);
 
 const CardContent = () => {
-  const limit = 4;
+  const limit = 8;
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const dispatch = useDispatch();

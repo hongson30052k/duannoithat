@@ -8,9 +8,14 @@ import {
   fetchGetUserFalseAdmin,
 } from "../../../../store/slices/UserSlice";
 import { fetchGetImgFalseAdmin } from "../../../../store/slices/UserLoginSlice";
+import ModalEditUser from "../ModelEditUser/ModalEditUser";
 const cx = classNames.bind(styles);
 
 const CustomerManagement = () => {
+  const [show, setShow] = useState(false);
+  const [id, setId] = useState<number>(0);
+  const { statusEdit } = useSelector((state: RootState) => state.userState);
+  console.log(show, "show");
   const dispatch = useDispatch();
   const [dataUser, setDataUser] = useState<any>([]);
   const { userImgAdmin } = useSelector(
@@ -22,6 +27,10 @@ const CustomerManagement = () => {
     );
     return item2 ? { ...item1, ...item2 } : item1;
   });
+  const handleEdit = (id: number) => {
+    setShow(true);
+    setId(id);
+  };
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -33,7 +42,7 @@ const CustomerManagement = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [statusEdit]);
   console.log(dataUser, "dataUser");
   return (
     <>
@@ -56,33 +65,41 @@ const CustomerManagement = () => {
             {newData &&
               newData?.map((item: any, index: any) => {
                 return (
-                  <tr>
-                    <td>
-                      <img
-                        src={item.img}
-                        alt={item.myname}
-                        className={cx("img-data")}
-                      />
-                    </td>
-                    <td>{item?.myname}</td>
-                    <td>{item?.phone}</td>
-                    <td>{item?.address}</td>
-                    <td>{item?.isAdmin ? "Admin" : "User"}</td>
-                    <td>
-                      {item?.isAdmin === true ? null : (
-                        <button className={cx("btn active-btn")}>Edit</button>
-                      )}
-                    </td>
-                    <td>
-                      {item?.isAdmin === true ? null : (
-                        <button className={cx("btn delete-btn")}>Xóa</button>
-                      )}
-                    </td>
-                  </tr>
+                  <>
+                    <tr>
+                      <td>
+                        <img
+                          src={item.img}
+                          alt={item.myname}
+                          className={cx("img-data")}
+                        />
+                      </td>
+                      <td>{item?.myname}</td>
+                      <td>{item?.phone}</td>
+                      <td>{item?.address}</td>
+                      <td>{item?.isAdmin ? "Admin" : "User"}</td>
+                      <td>
+                        {item?.isAdmin === true ? null : (
+                          <button
+                            className={cx("btn active-btn")}
+                            onClick={() => handleEdit(item.id)}
+                          >
+                            Edit
+                          </button>
+                        )}
+                      </td>
+                      <td>
+                        {item?.isAdmin === true ? null : (
+                          <button className={cx("btn delete-btn")}>Xóa</button>
+                        )}
+                      </td>
+                    </tr>
+                  </>
                 );
               })}
           </tbody>
         </table>
+        {show && <ModalEditUser setShows={setShow} id={id} />}
       </div>
     </>
   );

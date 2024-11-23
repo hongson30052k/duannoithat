@@ -10,6 +10,7 @@ const initialState = {
   userRender: [],
   statusPassword: false,
   userFalseAdmin: [],
+  statusEdit: false,
 };
 
 export const fetchGetUserFalseAdmin = createAsyncThunk(
@@ -53,6 +54,31 @@ export const fetchGetUser = createAsyncThunk(
   }
 );
 
+export const fetchGetUserImg = createAsyncThunk(
+  "userSlice/fetchGetUser",
+  async (id: number, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
+    try {
+      const res = await axiosInstance.get(`/userImg/${id}`);
+      return res;
+    } catch (error) {
+      rejectWithValue(error);
+    }
+  }
+);
+export const fetchGetUserId = createAsyncThunk(
+  "userSlice/fetchGetUserId",
+  async (id: number, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
+    try {
+      const res = await axiosInstance.get(`/users/${id}`);
+      return res;
+    } catch (error) {
+      rejectWithValue(error);
+    }
+  }
+);
+
 export const loginUser = createAsyncThunk<any, any>(
   "userSlice/loginUser",
   async ({ username, password }: any, thunkAPI) => {
@@ -85,6 +111,34 @@ export const fetchEditUser = createAsyncThunk(
       });
       console.log(id, password, "password res");
       return res;
+    } catch (error) {
+      rejectWithValue(error);
+    }
+  }
+);
+
+export const fetchEditUserProfile = createAsyncThunk(
+  "userSlice/fetchEditUserProfile",
+  async ({ id, value }: any, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
+    try {
+      const resdata = await axiosInstance.get(`/users/${id}`);
+      const data = { ...resdata, ...value };
+      const res = await axiosInstance.put(`/users/${id}`, data);
+      // return 1;
+    } catch (error) {
+      rejectWithValue(error);
+    }
+  }
+);
+export const fetchEditUserImgProfile = createAsyncThunk(
+  "userSlice/fetchEditUserImgProfile",
+  async ({ id, value1 }: any, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
+    try {
+      const resdata = await axiosInstance.get(`/userImg/${id}`);
+      const data = { ...resdata, ...value1 };
+      await axiosInstance.put(`/userImg/${id}`, data);
     } catch (error) {
       rejectWithValue(error);
     }
@@ -176,6 +230,13 @@ export const UserSlice = createSlice({
       state.userFalseAdmin = action.payload;
     });
     builder.addCase(fetchGetUserFalseAdmin.rejected, (state, action) => {});
+
+    builder.addCase(fetchEditUserProfile.fulfilled, (state, action) => {
+      state.statusEdit = !state.statusEdit;
+    });
+    builder.addCase(fetchEditUserImgProfile.fulfilled, (state, action) => {
+      state.statusEdit = !state.statusEdit;
+    });
   },
 });
 

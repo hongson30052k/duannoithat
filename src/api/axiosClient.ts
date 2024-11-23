@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const axiosInstance = axios.create({
-  baseURL: "https://backend-itsx.onrender.com/",
+  baseURL: "https://backend-8a73.onrender.com",
   timeout: 5000,
   headers: {
     "Content-Type": "application/json",
