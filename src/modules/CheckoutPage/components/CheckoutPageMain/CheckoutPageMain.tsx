@@ -21,7 +21,14 @@ const CheckoutPageMain = () => {
   const [colors, setColors] = useState<any>([]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const currentTime = new Date();
+  const date = {
+    day: currentTime.getDate(),
+    month: currentTime.getMonth() + 1,
+    year: currentTime.getFullYear(),
+    hours: currentTime.getHours(),
+    minutes: currentTime.getMinutes(),
+  };
   let result = 0;
   const { userProducts } = useSelector(
     (state: RootState) => state.userProductState
@@ -55,7 +62,7 @@ const CheckoutPageMain = () => {
         total: result,
         product: userProducts,
         userId: userProducts[0].userId,
-        date: new Date(),
+        date: date,
         status: "Pending",
       };
       const res: any = await dispatch(fetchCreateOrder(value));

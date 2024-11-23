@@ -16,6 +16,7 @@ const OrderManagement = () => {
   const { items, itemProduct, status } = useSelector(
     (state: RootState) => state.cartOderState
   );
+  console.log(items, "itemssssssssssssssssss");
   const dispatch = useDispatch();
   console.log(items, "items");
   const onShowProductDetail = async (id: any) => {
@@ -33,12 +34,10 @@ const OrderManagement = () => {
   };
   useEffect(() => {
     dispatch(fetchGetOrder());
-    const timeoutId = setTimeout(async () => {
+    const fetchData = async () => {
       await dispatch(fetchGetOrder());
-    }, 3000);
-    return () => {
-      clearTimeout(timeoutId);
     };
+    fetchData();
   }, [status, dispatch]);
   return (
     <div>
@@ -59,71 +58,74 @@ const OrderManagement = () => {
           </thead>
           <tbody>
             {items &&
-              items.map((item: any, index: number) => (
-                <tr key={index}>
-                  <td>{item?.id}</td>
-                  <td>{item?.name}</td>
-                  <td>{item?.total.toLocaleString()} VND</td>
-                  <td>
-                    {item?.status === "Pending" && "Chưa xử lý"}
-                    {item?.status === "Processing" && "Đang chuẩn bị"}
-                    {item?.status === "Shipped" && "Đang giao hàng"}
-                    {item?.status === "Delivered" && "Đã giao hàng"}
-                    {item?.status === "Canceled" && "Đã hủy"}
-                  </td>
-                  <td>{item?.date}</td>
-                  <td>{item?.address}</td>
-                  <td>
-                    <button
-                      className={cx("action-btn")}
-                      onClick={() => {
-                        onShowProductDetail(item?.id);
-                      }}
-                    >
-                      Xem chi tiết
-                    </button>
-                    {item?.status === "Pending" ? (
+              items.map((item: any, index: number) => {
+                const stringDay = `${item?.date?.day}/${item?.date?.month}/${item?.date?.year}`;
+                return (
+                  <tr key={index}>
+                    <td>{item?.id}</td>
+                    <td>{item?.name}</td>
+                    <td>{item?.total.toLocaleString()} VND</td>
+                    <td>
+                      {item?.status === "Pending" && "Chưa xử lý"}
+                      {item?.status === "Processing" && "Đang chuẩn bị"}
+                      {item?.status === "Shipped" && "Đang giao hàng"}
+                      {item?.status === "Delivered" && "Đã giao hàng"}
+                      {item?.status === "Canceled" && "Đã hủy"}
+                    </td>
+                    <td>{stringDay}</td>
+                    <td>{item?.address}</td>
+                    <td>
                       <button
                         className={cx("action-btn")}
                         onClick={() => {
-                          handlePending(item?.id);
+                          onShowProductDetail(item?.id);
                         }}
                       >
-                        Xác nhận
+                        Xem chi tiết
                       </button>
-                    ) : (
-                      <select
-                        className={cx("action-select")}
-                        value={item?.status}
-                        onChange={(e) =>
-                          handleStatus({
-                            id: item?.id,
-                            status: e.target.value,
-                          })
-                        }
-                      >
-                        Thay đổi trạng thái
-                        <option value="Processing">Đang chuẩn bị</option>
-                        <option value="Shipped">Đang giao hàng</option>
-                        <option value="Delivered">Đã giao hàng</option>
-                        <option value="Canceled">Đã hủy</option>
-                      </select>
-                    )}
-                    <>
-                      {item?.status === "Canceled" && (
+                      {item?.status === "Pending" ? (
                         <button
                           className={cx("action-btn")}
                           onClick={() => {
-                            handleDelete(item?.id);
+                            handlePending(item?.id);
                           }}
                         >
-                          xóa
+                          Xác nhận
                         </button>
+                      ) : (
+                        <select
+                          className={cx("action-select")}
+                          value={item?.status}
+                          onChange={(e) =>
+                            handleStatus({
+                              id: item?.id,
+                              status: e.target.value,
+                            })
+                          }
+                        >
+                          Thay đổi trạng thái
+                          <option value="Processing">Đang chuẩn bị</option>
+                          <option value="Shipped">Đang giao hàng</option>
+                          <option value="Delivered">Đã giao hàng</option>
+                          <option value="Canceled">Đã hủy</option>
+                        </select>
                       )}
-                    </>
-                  </td>
-                </tr>
-              ))}
+                      <>
+                        {item?.status === "Canceled" && (
+                          <button
+                            className={cx("action-btn")}
+                            onClick={() => {
+                              handleDelete(item?.id);
+                            }}
+                          >
+                            xóa
+                          </button>
+                        )}
+                      </>
+                    </td>
+                  </tr>
+                );
+              })}
           </tbody>
         </table>
         {isModalOpen ? (
