@@ -88,11 +88,6 @@ const CustomerManagement = () => {
                           </button>
                         )}
                       </td>
-                      <td>
-                        {item?.isAdmin === true ? null : (
-                          <button className={cx("btn delete-btn")}>Xóa</button>
-                        )}
-                      </td>
                     </tr>
                   </>
                 );
