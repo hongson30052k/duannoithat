@@ -8,7 +8,7 @@
   .home-header-content {
     position: absolute;
     width: 643px;
-    height: 443px;
+    height: 473px;
     right: 100px;
     bottom: 120px;
     padding: 30px;
@@ -58,5 +58,11 @@
       line-height: 24px;
       color: #ffffff;
     }
+  }
+}
+
+@media (max-width: 768px) {
+  .home-header {
+    display: none;
   }
 }

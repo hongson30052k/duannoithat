@@ -12,12 +12,9 @@ import {
 import { RootState } from "../../../../store/store";
 import { useNavigate } from "react-router-dom";
 import {
-  fetchAddImgProduct,
   fetchColor,
   fetchGetImgProduct,
-  fetchGetImgProductId,
 } from "../../../../store/slices/CartProductSlice";
-import GenerateIdWithDate from "../../../../utils/GenerateIdWithDate/GenerateIdWithDate";
 const cx = classNames.bind(styles);
 
 const ProfileShopping = () => {
@@ -89,8 +86,8 @@ const ProfileShopping = () => {
       </div>
       {data && data.length > 0 ? (
         data.map((item: any) => {
-          const discounted_price = Number(item.product.discounted_price);
-          const original_price = Number(item.product.original_price);
+          const discounted_price = Number(item?.product?.discounted_price);
+          const original_price = Number(item?.product?.original_price);
           const formatDiscountPrice = discounted_price?.toLocaleString();
           const formatOriginalPrice = original_price?.toLocaleString();
           const colorFind = color.find(
@@ -98,7 +95,7 @@ const ProfileShopping = () => {
           );
           return (
             <div className={cx("cart-items")}>
-              <div key={item.product.id} className={cx("cart-item")}>
+              <div key={item?.product?.id} className={cx("cart-item")}>
                 <img
                   src={item.img}
                   alt={item.product.name}

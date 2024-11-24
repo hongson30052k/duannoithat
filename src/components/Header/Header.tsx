@@ -9,13 +9,31 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 import { useEffect, useState } from "react";
 import { fetchGetUserLogin } from "../../store/slices/UserLoginSlice";
-import { fetchGetUser } from "../../store/slices/UserSlice";
-import { table } from "console";
+import MenuIcon from "@mui/icons-material/Menu";
+import {
+  Box,
+  Drawer,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Typography,
+} from "@mui/material";
 
 const cx = classNames.bind(styles);
 const Header = () => {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  const toggleDrawer = (newOpen: boolean) => () => {
+    setOpen(newOpen);
+  };
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
   const { isAuthenticated } = useSelector(
     (state: RootState) => state.userState
   );
@@ -33,10 +51,55 @@ const Header = () => {
     };
     fetchData();
   }, [isAuthenticated]);
+  const DrawerList = (
+    <Box
+      sx={{
+        width: 300,
+        height: "100%",
+        backgroundColor: "#f4f4f4",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+      }}
+      role="presentation"
+      onClick={toggleDrawer(false)}
+    >
+      <List>
+        <ListItem disablePadding>
+          <ListItemButton component={Link} to="/">
+            <Typography sx={{ color: "black", fontSize: "20px" }}>
+              Home
+            </Typography>
+          </ListItemButton>
+        </ListItem>
 
+        <ListItem disablePadding>
+          <ListItemButton component={Link} to="/shop">
+            <Typography sx={{ color: "black", fontSize: "20px" }}>
+              Shop
+            </Typography>
+          </ListItemButton>
+        </ListItem>
+
+        <ListItem disablePadding>
+          <ListItemButton component={Link} to="/admin">
+            <Typography sx={{ color: "black", fontSize: "20px" }}>
+              Admin
+            </Typography>
+          </ListItemButton>
+        </ListItem>
+      </List>
+    </Box>
+  );
   return (
     <>
+      <Drawer open={open} onClose={toggleDrawer(false)}>
+        {DrawerList}
+      </Drawer>
       <div className={cx("header")}>
+        <div className={cx("menu-icon")} onClick={toggleDrawer(true)}>
+          <MenuIcon style={{ fontSize: "40px" }} />
+        </div>
         <img src={logo} alt="logo" />
         <nav className={cx("nav-bar")}>
           <Link to="/">Home</Link>
@@ -55,15 +118,11 @@ const Header = () => {
               <img src={img} />
             </Link>
           )}
-          <Link to="/shopping">
+          <Link to="/shopping" className={cx("img-order")}>
             <img src={img1} />
-          </Link>
-          <Link to="/cart">
-            <FavoriteBorderIcon className={cx("icon")} />
           </Link>
         </div>
       </div>
-      {/* {loading && <LinearProgress />} */}
     </>
   );
 };

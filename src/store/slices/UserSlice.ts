@@ -11,6 +11,7 @@ const initialState = {
   statusPassword: false,
   userFalseAdmin: [],
   statusEdit: false,
+  statusSignIn: false,
 };
 
 export const fetchGetUserFalseAdmin = createAsyncThunk(
@@ -178,6 +179,7 @@ export const UserSlice = createSlice({
         const value = { ...action.payload, isAdmin: true };
         state.users = value;
         state.status = "success";
+        state.statusSignIn = !state.statusSignIn;
       }
     );
     builder.addCase(fetchCreateUser.rejected, (state, action) => {});

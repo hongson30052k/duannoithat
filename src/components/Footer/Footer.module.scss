@@ -135,3 +135,9 @@
   z-index: 1;
   bottom: 50px;
 }
+
+@media (max-width: 768px) {
+  .main-home-footter {
+    display: none;
+  }
+}

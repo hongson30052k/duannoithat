@@ -21,10 +21,16 @@ import {
   fetchSearchProductsPage,
   setLoading,
 } from "../../../../store/slices/CartProductSlice";
+import { Box, Grid, Grid2 } from "@mui/material";
 const cx = classNames.bind(styles);
 
 const CardContent = () => {
-  const limit = 8;
+  let limit = 8;
+  if (window.innerWidth <= 768) {
+    limit = 2;
+  } else {
+    limit = 8;
+  }
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const dispatch = useDispatch();
@@ -269,6 +275,28 @@ const CardContent = () => {
           limit={limit}
         />
       </div>
+      {/* <Box sx={{ flexGrow: 1, padding: 2 }}>
+        <Grid2 container spacing={2}>
+          {data.map((product, index) => (
+            <Grid
+              item
+              xs={6} // 4 items on small screens (2 columns per row)
+              sm={4} // 4 items on medium screens (3 columns per row)
+              key={product.id}
+            >
+              <Box
+                sx={{
+                  border: "1px solid #ddd",
+                  padding: 2,
+                  textAlign: "center",
+                }}
+              >
+                <Card key={index} data={data} />;
+              </Box>
+            </Grid>
+          ))}
+        </Grid2>
+      </Box> */}
     </>
   );
 };

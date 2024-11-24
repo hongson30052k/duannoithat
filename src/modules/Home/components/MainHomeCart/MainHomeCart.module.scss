@@ -41,3 +41,11 @@
   margin-top: 30px;
   cursor: pointer;
 }
+
+@media (max-width: 768px) {
+  .main-home-cart {
+    .main-home-cart-content {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}

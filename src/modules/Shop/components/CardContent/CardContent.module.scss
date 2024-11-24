@@ -5,3 +5,28 @@
   gap: 20px;
   margin: 50px;
 }
+@media (max-width: 1568px) {
+  .main-home-cart-content-show {
+    width: 50%;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 1273px) {
+  .main-home-cart-content-show {
+    width: 50%;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .main-home-cart-content-show {
+    width: 60%;
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+@media (max-width: 950px) {
+  .main-home-cart-content-show {
+    width: 50%;
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

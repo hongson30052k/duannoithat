@@ -60,11 +60,12 @@ const ProfileCartOrder = () => {
           </thead>
           <tbody>
             {orderUser?.map((item: any) => {
+              const formatTotal = Number(item?.total).toLocaleString();
+              const date = `${item?.date.day} / ${item?.date.month} / ${item?.date.year}`;
               return (
                 <tr>
-                  <td>{item.id}</td>
-
-                  <td>{item.total} VND</td>
+                  <td>{item?.id}</td>
+                  <td>{formatTotal} VND</td>
                   <td>
                     {item?.status === "Pending" && "Chưa xử lý"}
                     {item?.status === "Processing" && "Đang chuẩn bị"}
@@ -72,7 +73,7 @@ const ProfileCartOrder = () => {
                     {item?.status === "Delivered" && "Đã giao hàng"}
                     {item?.status === "Canceled" && "Đã hủy"}
                   </td>
-                  <td>{item?.date}</td>
+                  <td>{date}</td>
                   <td>{item?.address}</td>
                   <td>
                     <button

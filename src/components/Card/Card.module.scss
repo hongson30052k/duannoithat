@@ -164,19 +164,26 @@ $transition-duration: 0.3s; // Thời gian chuyển động
   }
 }
 
-// Mobile Responsiveness
-@media (max-width: 600px) {
+@media (max-width: 1568px) {
   .card {
-    width: 100%;
+    width: 300px;
+  }
+}
+
+@media (max-width: 1273px) {
+}
+// Mobile Responsiveness
+@media (max-width: 768px) {
+  .card {
+    width: 200px;
     margin: 10px;
   }
 
   .card-info {
     padding: 10px;
-  }
-
-  .card-title {
-    font-size: 16px;
+    .card-title {
+      font-size: 10px;
+    }
   }
 
   .card-text {
@@ -189,7 +196,7 @@ $transition-duration: 0.3s; // Thời gian chuyển động
   }
 
   .card-price {
-    font-size: 14px;
+    font-size: 12px;
   }
 
   .card-price-discount {

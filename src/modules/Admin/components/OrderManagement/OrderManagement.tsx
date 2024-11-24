@@ -16,9 +16,7 @@ const OrderManagement = () => {
   const { items, itemProduct, status } = useSelector(
     (state: RootState) => state.cartOderState
   );
-  console.log(items, "itemssssssssssssssssss");
   const dispatch = useDispatch();
-  console.log(items, "items");
   const onShowProductDetail = async (id: any) => {
     await dispatch(fetchGetOrderProduct(id));
     setIsModalOpen(true);
@@ -59,12 +57,13 @@ const OrderManagement = () => {
           <tbody>
             {items &&
               items.map((item: any, index: number) => {
+                const total = Number(item?.total).toLocaleString();
                 const stringDay = `${item?.date?.day}/${item?.date?.month}/${item?.date?.year}`;
                 return (
                   <tr key={index}>
                     <td>{item?.id}</td>
                     <td>{item?.name}</td>
-                    <td>{item?.total.toLocaleString()} VND</td>
+                    <td>{total} VND</td>
                     <td>
                       {item?.status === "Pending" && "Chưa xử lý"}
                       {item?.status === "Processing" && "Đang chuẩn bị"}

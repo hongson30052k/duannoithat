@@ -19,6 +19,7 @@ import { RootState } from "./store/store";
 import "./App.css";
 
 function App() {
+  const { statusSignIn } = useSelector((state: RootState) => state.userState);
   const [dataUser, setDataUser] = useState([]);
   const { isAuthenticated } = useSelector(
     (state: RootState) => state.userState
@@ -30,7 +31,7 @@ function App() {
     if (userFromLocalStorage) {
       dispatch(setUserFromLocalStorage(JSON.parse(userFromLocalStorage)));
     }
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -43,7 +44,7 @@ function App() {
       }
     };
     fetchData();
-  }, []);
+  }, [statusSignIn]);
 
   return (
     <div className="App">
