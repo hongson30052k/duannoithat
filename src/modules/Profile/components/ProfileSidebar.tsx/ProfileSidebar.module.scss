@@ -80,3 +80,22 @@
   width: 80%;
   height: 100vh;
 }
+.sidebar-icon {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+  .content {
+    width: 100%;
+  }
+  .sidebar-icon {
+    display: block;
+    position: absolute;
+    top: 140px;
+    left: 40px;
+    cursor: pointer;
+  }
+}

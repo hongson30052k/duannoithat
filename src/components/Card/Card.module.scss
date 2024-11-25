@@ -166,11 +166,14 @@ $transition-duration: 0.3s; // Thời gian chuyển động
 
 @media (max-width: 1568px) {
   .card {
-    width: 300px;
+    width: 250px;
   }
 }
 
 @media (max-width: 1273px) {
+  .card {
+    width: 250px;
+  }
 }
 // Mobile Responsiveness
 @media (max-width: 768px) {

@@ -6,8 +6,9 @@ import { useState } from "react";
 import ProfileEdit from "../ProfileEdit/ProfileEdit";
 import ProfileShopping from "../ProfileShopping/ProfileShopping";
 import ProfileCartOrder from "../ProfileCartOrder/ProfileCartOrder";
-import { setLoadings } from "../../../../store/slices/UserProductSlice";
 import { setLoadingUser } from "../../../../store/slices/UserLoginSlice";
+import { Drawer } from "@mui/material";
+import WidgetsIcon from "@mui/icons-material/Widgets";
 const cx = classNames.bind(styles);
 
 const ProfileSidebar = () => {
@@ -22,8 +23,72 @@ const ProfileSidebar = () => {
     dispatch(setLoadingUser(false));
   }
   const [idContent, setIdContent] = useState(1);
+  const [open, setOpen] = useState(false);
+  const toggleDrawer = () => {
+    setOpen((prevOpen) => !prevOpen);
+  };
+  const Daw = (
+    <div className={cx("sidebar-menu")}>
+      <h2>Menu</h2>
+      <ul>
+        <li>
+          {userProduct?.map((item: any) => {
+            return (
+              <div key={item.id} className={cx("item")}>
+                <a>{item.myname}</a>
+                <img src={item.img} alt="" width="50px" height="50px" />
+              </div>
+            );
+          })}
+        </li>
+        <li>
+          <span
+            style={idContent === 1 ? { backgroundColor: "#1abc9c" } : {}}
+            onClick={() => {
+              setIdContent(1);
+              toggleDrawer();
+            }}
+          >
+            Thông tin Users
+          </span>
+        </li>
+        {isAdmin ? null : (
+          <li>
+            <span
+              style={idContent === 2 ? { backgroundColor: "#1abc9c" } : {}}
+              onClick={() => {
+                setIdContent(2);
+                toggleDrawer();
+              }}
+            >
+              Giỏ hàng
+            </span>
+          </li>
+        )}
+        {isAdmin ? null : (
+          <li>
+            <span
+              style={idContent === 3 ? { backgroundColor: "#1abc9c" } : {}}
+              onClick={() => {
+                setIdContent(3);
+                toggleDrawer();
+              }}
+            >
+              Đơn Hàng
+            </span>
+          </li>
+        )}
+      </ul>
+    </div>
+  );
   return (
     <>
+      <Drawer open={open} onClose={toggleDrawer}>
+        {Daw}
+      </Drawer>
+      <div className={cx("sidebar-icon")} onClick={toggleDrawer}>
+        <WidgetsIcon style={{ fontSize: "30px" }} />
+      </div>
       <div className={cx("sidebar")}>
         <h2>Menu</h2>
         <ul>

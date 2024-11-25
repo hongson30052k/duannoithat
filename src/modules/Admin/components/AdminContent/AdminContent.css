@@ -1,0 +1,22 @@
+.menu-sidebar {
+  display: none;
+}
+.admin-active {
+  display: none;
+}
+
+@media (max-width: 1280px) {
+  .admin-content {
+    display: none;
+  }
+
+  .admin-sidebar {
+    display: none;
+  }
+  .menu-sidebar {
+    display: block;
+  }
+  .admin-active {
+    display: none;
+  }
+}

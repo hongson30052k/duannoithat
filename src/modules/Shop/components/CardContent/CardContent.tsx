@@ -28,6 +28,10 @@ const CardContent = () => {
   let limit = 8;
   if (window.innerWidth <= 768) {
     limit = 2;
+  } else if (window.innerWidth <= 1024) {
+    limit = 4;
+  } else if (window.innerWidth <= 1280) {
+    limit = 6;
   } else {
     limit = 8;
   }

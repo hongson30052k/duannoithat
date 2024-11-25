@@ -1,0 +1,9 @@
+.admin-header {
+  display: block;
+}
+
+@media (max-width: 1280px) {
+  .admin-header {
+    display: none;
+  }
+}
