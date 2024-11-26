@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import CurrencyInput from "react-currency-input-field";
 import { Formik, Field, Form, ErrorMessage, useFormik } from "formik";
 import * as Yup from "yup";
 import styles from "./ModalEdit.module.scss";
@@ -103,26 +104,36 @@ const ModalEdit: React.FC = () => {
           />
           {error && <div className={cx("error-message")}>{error}</div>}
           <label htmlFor="original_price">Giá sản phẩm</label>
-          <input
-            type="text"
+          <CurrencyInput
             id="original_price"
             name="original_price"
-            className={cx("form-control")}
+            // className={cx("form-control")}
+            className="currency"
             placeholder="Nhập giá sản phẩm - giá gốc"
             value={formik.values.original_price}
-            onChange={formik.handleChange}
+            onValueChange={(value) =>
+              formik.setFieldValue("original_price", value)
+            }
+            groupSeparator=","
+            decimalSeparator="."
           />
+
           {error && <div className={cx("error-message")}>{error}</div>}
           <div className={cx("form-group")}>
             <label htmlFor="discounted_price">Giá sản phẩm sau khi giảm</label>
-            <input
+            <CurrencyInput
               type="text"
               id="discounted_price"
               name="discounted_price"
-              className={cx("form-control")}
-              placeholder="Nhập mật khẩu của bạn"
+              // className={cx("form-control")}
+              className="currency"
+              placeholder="Nhập giá sản phẩm sau khi giảm"
               value={formik.values.discounted_price}
-              onChange={formik.handleChange}
+              onValueChange={(value) =>
+                formik.setFieldValue("discounted_price", value)
+              }
+              groupSeparator=","
+              decimalSeparator="."
             />
             {error && <div className={cx("error-message")}>{error}</div>}
           </div>

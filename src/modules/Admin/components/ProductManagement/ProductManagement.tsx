@@ -1,3 +1,4 @@
+import CurrencyInput from "react-currency-input-field";
 import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -24,9 +25,7 @@ import FileBase from "react-file-base64";
 import { generateUUID2 } from "../../../../utils/GenerateldUIID/GenerateldUIID";
 import ModalEdit from "../ModalEdit/ModalEdit";
 import PaginationPageProduct from "../PaginationPageProduct/Pagination";
-import { toast } from "react-toastify";
 const cx = classNames.bind(styles);
-
 const ProductManagement: React.FC = () => {
   const dispatch = useDispatch();
   const isValidBase64Image = (base64: string) => {
@@ -231,26 +230,35 @@ const ProductManagement: React.FC = () => {
           <div className={cx("error")}> *{formik.errors.name}</div>
         ) : null}
         <label htmlFor="original_price">Giá gốc</label>
-        <input
-          type="text"
+        <CurrencyInput
           id="original_price"
           name="original_price"
-          onChange={formik.handleChange}
+          className="currency"
+          onValueChange={(value) =>
+            formik.setFieldValue("original_price", value)
+          }
           onBlur={formik.handleBlur}
           value={formik.values.original_price}
-          placeholder="Nhập giá sản phẩm"
+          groupSeparator=","
+          decimalSeparator="."
+          placeholder="Nhập giá sản phẩm"
         />
         {formik.touched.original_price && formik.errors.original_price ? (
           <div className={cx("error")}> *{formik.errors.original_price}</div>
         ) : null}
         <label htmlFor="discounted_price">Giá đã giảm</label>
-        <input
-          type="text"
+        <CurrencyInput
           id="discounted_price"
           name="discounted_price"
-          onChange={formik.handleChange}
+          className="currency"
+          onValueChange={(value) =>
+            formik.setFieldValue("discounted_price", value)
+          }
           onBlur={formik.handleBlur}
           value={formik.values.discounted_price}
+          groupSeparator=","
+          decimalSeparator="."
+          placeholder="Nhập giá đã giảm"
         />
         {formik.touched.discounted_price && formik.errors.discounted_price ? (
           <div className={cx("error")}>{formik.errors.discounted_price}</div>
@@ -284,7 +292,6 @@ const ProductManagement: React.FC = () => {
           />
         )}
         {error && <div className={cx("error")}>{error}</div>}
-
         <br />
         <Button
           variant="contained"
