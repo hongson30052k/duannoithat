@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { RootState } from "../store/store";
+import { toast } from "react-toastify";
 
 const WithAuth = (WrappedComponent: React.FC<any>) => {
   const AuthHOC: React.FC<any> = (props) => {
@@ -15,10 +16,10 @@ const WithAuth = (WrappedComponent: React.FC<any>) => {
       if (isAuthenticated && !user.isAdmin) {
         navigate("/shopping");
       } else if (isAuthenticated && user.isAdmin) {
-        alert("Bạn là admin không có chức năng mua sản phẩm");
+        toast.error("Bạn là admin không có chức năng mua sản phẩm");
         navigate("/");
       } else if (!isAuthenticated) {
-        alert("bạn chưa đăng nhập vui lòng đăng nhập");
+        toast.error("bạn chưa đăng nhập vui lòng đăng nhập");
         navigate("/login");
       }
     }, [isAuthenticated, navigate]);

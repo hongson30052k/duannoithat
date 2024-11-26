@@ -88,6 +88,7 @@ const SignUpForm = () => {
                 Username
               </Typography>
               <TextField
+                type="text-area"
                 fullWidth
                 className={cx("input")}
                 id="username"
@@ -121,8 +122,8 @@ const SignUpForm = () => {
                 sx={{
                   fontFamily: "Jost",
                   fontStyle: "normal",
-                  fontWeight: "400",
-                  fontSize: "16px",
+                  fontWeight: "600",
+                  fontSize: "20px",
                   lineHeight: "17px",
                   color: "#131118",
                   mb: 1,
@@ -133,6 +134,7 @@ const SignUpForm = () => {
               <TextField
                 fullWidth
                 className={cx("input")}
+                type="text-area"
                 id="phone"
                 name="phone"
                 variant="outlined"
@@ -165,8 +167,8 @@ const SignUpForm = () => {
                 sx={{
                   fontFamily: "Jost",
                   fontStyle: "normal",
-                  fontWeight: "400",
-                  fontSize: "16px",
+                  fontWeight: "600",
+                  fontSize: "20px",
                   lineHeight: "17px",
                   color: "#131118",
                   mb: 1,
@@ -177,6 +179,7 @@ const SignUpForm = () => {
               <TextField
                 fullWidth
                 className={cx("input")}
+                type="text-area"
                 id="address"
                 name="address"
                 variant="outlined"
@@ -210,8 +213,8 @@ const SignUpForm = () => {
                 sx={{
                   fontFamily: "Jost",
                   fontStyle: "normal",
-                  fontWeight: "400",
-                  fontSize: "16px",
+                  fontWeight: "600",
+                  fontSize: "20px",
                   lineHeight: "17px",
                   color: "#131118",
                   mb: 1,
@@ -255,8 +258,8 @@ const SignUpForm = () => {
                 sx={{
                   fontFamily: "Jost",
                   fontStyle: "normal",
-                  fontWeight: "400",
-                  fontSize: "16px",
+                  fontWeight: "600",
+                  fontSize: "20px",
                   lineHeight: "17px",
                   color: "#131118",
                   mb: 1,

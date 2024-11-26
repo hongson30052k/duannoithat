@@ -154,6 +154,7 @@ const ProfileEdit = () => {
           PassWord
         </label>
         <input
+          type="password"
           name="password"
           value={user2.password}
           className={cx("input-profile")}
@@ -169,7 +170,7 @@ const ProfileEdit = () => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               placeholder="Nhập lại PassWord"
-              type="text"
+              type="password"
               className={cx("input-profile")}
             />
             {formik.touched.resetPassword && formik.errors.resetPassword ? (
@@ -186,7 +187,7 @@ const ProfileEdit = () => {
               onBlur={formik.handleBlur}
               name="newPassword"
               value={formik.values.newPassword}
-              type="text"
+              type="password"
             />
             {formik.touched.newPassword && formik.errors.newPassword ? (
               <div style={{ color: "red" }}>{formik.errors.newPassword}</div>

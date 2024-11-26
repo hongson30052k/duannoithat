@@ -8,6 +8,7 @@ import { fetchCreateUserLogin } from "../../../../store/slices/UserLoginSlice";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { fetchCreateUser } from "../../../../store/slices/UserSlice";
+import { toast } from "react-toastify";
 
 const cx = classNames.bind(styles);
 
@@ -38,6 +39,7 @@ const UserLoginForm: React.FC = () => {
       };
       console.log(value);
       await dispatch(fetchCreateUserLogin(value));
+      toast.success("Bạn đã tạo tài khoản thành công");
       formik.resetForm();
       navigate("/login");
     },

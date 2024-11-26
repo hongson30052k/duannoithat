@@ -210,8 +210,10 @@ const CardContent = () => {
 
   useEffect(() => {
     console.log("searchValue", searchValue);
+    console.log("search", search);
+    console.log("productOptionId", productOptionId);
 
-    if (search === "search") {
+    if (search === "search" && productOptionId === null) {
       const payload = {
         search: searchValue,
         currentPage: 1,
@@ -234,7 +236,7 @@ const CardContent = () => {
   }, [searchValue, search, productOptionId, checked, checkedPrice]);
 
   const handlePageChange = (page: number) => {
-    if (search === "search") {
+    if (search === "search" && productOptionId === null) {
       const payload = {
         search: searchValue,
         currentPage: page,

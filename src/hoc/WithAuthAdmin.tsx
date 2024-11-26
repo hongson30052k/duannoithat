@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const WithAuthAdmin = (WrappedComponent: React.FC) => {
   const AuthHOC: React.FC<any> = (props) => {
@@ -9,7 +10,7 @@ const WithAuthAdmin = (WrappedComponent: React.FC) => {
       if (user.isAdmin) {
         navigate("/admin");
       } else {
-        alert("Trang này dành cho Admin! bạn không có quyền truy cập");
+        toast.error("Trang này dành cho Admin! bạn không có quyền truy cập");
         navigate("/");
       }
     }, [user.isAdmin]);

@@ -13,6 +13,7 @@ import {
 import { RootState } from "../../../../store/store";
 import { Link, useNavigate } from "react-router-dom";
 import { fetchGetUserLogin } from "../../../../store/slices/UserLoginSlice";
+import { toast } from "react-toastify";
 const cx = classNames.bind(styles);
 
 const LoginForm = () => {
@@ -35,7 +36,9 @@ const LoginForm = () => {
   };
 
   const validationSchema = Yup.object().shape({
-    username: Yup.string().required("Username is required"),
+    username: Yup.string()
+      .required("Username is required")
+      .min(6, "Username must be at least 6 characters long"),
     password: Yup.string()
       .required("Password is required")
       .min(6, "Password must be at least 6 characters long"),
@@ -45,12 +48,11 @@ const LoginForm = () => {
     const res: any = await dispatch(loginUser(values));
     const payload = res.payload;
     if (typeof payload === "string") {
-      alert(payload);
+      toast.error(payload);
       return;
     }
-
     navigate("/");
-    alert("Login thành công");
+    toast.success("Login thành công");
   };
 
   const onClearError = () => {
@@ -103,13 +105,13 @@ const LoginForm = () => {
               <form onSubmit={handleSubmit} className={cx("form")}>
                 <Typography
                   sx={{
+                    mt: 2,
                     fontFamily: "Jost",
                     fontStyle: "normal",
                     fontWeight: "600",
                     fontSize: "20px",
                     lineHeight: "20px",
                     color: "#131118",
-                    mt: 2,
                   }}
                 >
                   Username
@@ -119,16 +121,17 @@ const LoginForm = () => {
                   className={cx("input")}
                   id="username"
                   name="username"
+                  type="text-area"
                   variant="outlined"
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  onFocus={onClearError}
                   value={values.username}
                   error={touched.username && Boolean(errors.username)}
                   helperText={touched.username && errors.username}
-                  onFocus={onClearError}
                   slotProps={{
                     input: {
-                      style: { fontSize: "16px", marginBottom: "10px" },
+                      style: { fontSize: "16px" },
                     },
                     inputLabel: {
                       style: {

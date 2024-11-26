@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { axiosInstance } from "../../api/axiosClient";
+import { toast } from "react-toastify";
 
 const initialState: any = {
   items: [],
@@ -151,11 +152,14 @@ export const CartOderSlice = createSlice({
       (state, action) => {
         state.status = !state.status;
         state.itemProduct = action.payload;
+        toast.success("xác nhận đơn hàng thành công");
       }
     );
     builder.addCase(
       fetchChangePendingOrderProduct.rejected,
-      (state, action) => {}
+      (state, action) => {
+        toast.error("xác nhận đơn hàng thất bại");
+      }
     );
 
     builder.addCase(fetchChangeStatusOrderProduct.pending, (state, action) => {
@@ -166,12 +170,12 @@ export const CartOderSlice = createSlice({
       (state, action) => {
         state.status = !state.status;
         state.itemProduct = action.payload;
+        toast.success("Chuyển trạng thái đơn hàng thành công");
       }
     );
-    builder.addCase(
-      fetchChangeStatusOrderProduct.rejected,
-      (state, action) => {}
-    );
+    builder.addCase(fetchChangeStatusOrderProduct.rejected, (state, action) => {
+      toast.error("Chuyển trạng thái đơn hàng thất bại");
+    });
 
     builder.addCase(fetchProductOrderUserId.pending, (state, action) => {});
     builder.addCase(fetchProductOrderUserId.fulfilled, (state, action) => {
@@ -182,8 +186,11 @@ export const CartOderSlice = createSlice({
     builder.addCase(fetchCancleOrderProduct.pending, (state, action) => {});
     builder.addCase(fetchCancleOrderProduct.fulfilled, (state, action) => {
       state.status = !state.status;
+      toast.success("Huỷ đơn hàng thành công");
     });
-    builder.addCase(fetchCancleOrderProduct.rejected, (state, action) => {});
+    builder.addCase(fetchCancleOrderProduct.rejected, (state, action) => {
+      toast.error("Huỷ đơn hàng thất bại");
+    });
 
     builder.addCase(fetchDeleteOrder.pending, (state, action) => {});
     builder.addCase(fetchDeleteOrder.fulfilled, (state, action) => {

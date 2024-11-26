@@ -17,6 +17,9 @@ import OrderPagePage from "./pages/CheckoutPage/CheckoutPage";
 import ShoppingOrderPage from "./pages/ShoppingOrder.tsx/ShoppingOrderPage";
 import { RootState } from "./store/store";
 import "./App.css";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Tab } from "@mui/material";
 
 function App() {
   const { statusSignIn } = useSelector((state: RootState) => state.userState);
@@ -80,6 +83,7 @@ function App() {
         <Route path="/order" element={<OrderPagePage />} />
         <Route path="/shopping" element={<ShoppingOrderPage />} />
       </Routes>
+      <ToastContainer />
     </div>
   );
 }

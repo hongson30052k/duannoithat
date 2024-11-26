@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { axiosInstance } from "../../api/axiosClient";
+import { toast } from "react-toastify";
 
 const initialState: any = {
   userProduct: [],
@@ -168,9 +169,12 @@ export const userProductSlice = createSlice({
 
     builder.addCase(fetchDeleteUserProduct.fulfilled, (state, action) => {
       state.userProducts = action.payload;
+      toast.success("Bạn đã xóa tất cả sản phẩm trong giỏ hàng");
     });
 
-    builder.addCase(fetchDeleteUserProduct.rejected, (state, action) => {});
+    builder.addCase(fetchDeleteUserProduct.rejected, (state, action) => {
+      toast.error("Xóa sản phẩm thất bại");
+    });
 
     builder.addCase(fetchIncrease.pending, (state) => {});
 
@@ -187,8 +191,11 @@ export const userProductSlice = createSlice({
     builder.addCase(fetchDeleteProduct.pending, (state) => {});
     builder.addCase(fetchDeleteProduct.fulfilled, (state, action) => {
       state.action = action.payload;
+      toast.success("Xóa sản phẩm thành công");
     });
-    builder.addCase(fetchDeleteProduct.rejected, (state, action) => {});
+    builder.addCase(fetchDeleteProduct.rejected, (state, action) => {
+      toast.error("Xóa sản phẩm thất bại");
+    });
   },
 });
 

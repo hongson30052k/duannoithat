@@ -19,6 +19,7 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
+import { toast } from "react-toastify";
 
 const cx = classNames.bind(styles);
 const Header = () => {
@@ -114,7 +115,12 @@ const Header = () => {
               })}
             </Link>
           ) : (
-            <Link to="/login">
+            <Link
+              to="/login"
+              onClick={() =>
+                toast.error("bạn chưa đăng nhập vui lòng đăng nhập")
+              }
+            >
               <img src={img} />
             </Link>
           )}

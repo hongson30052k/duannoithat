@@ -12,6 +12,7 @@ import {
 } from "../../../../store/slices/CartProductSlice";
 import FileBase from "react-file-base64";
 import { Dialog } from "@mui/material";
+import { toast } from "react-toastify";
 const cx = classNames.bind(styles);
 
 const ModalEdit: React.FC = () => {
@@ -51,7 +52,7 @@ const ModalEdit: React.FC = () => {
       };
       dispatch(fetchEditProduct({ id, value }));
       dispatch(setShowModalEdit(false));
-      alert("Chỉnh Sửa Thông Tin Thành Cống");
+      toast.success("Chỉnh Sửa Thông Tin Thành Cống");
     },
   });
   const handleEditImage = (files: { base64: string }) => {

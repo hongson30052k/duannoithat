@@ -12,6 +12,7 @@ import styles from "./Card.module.scss";
 import classNames from "classnames/bind";
 import { fetchCreateProductId } from "../../store/slices/UserProductSlice";
 import { calculateDiscountPercentage } from "../../utils/calculateDiscountPercentage/calculateDiscountPercentage";
+import { toast } from "react-toastify";
 
 const cx = classNames.bind(styles);
 
@@ -23,19 +24,21 @@ const Card = ({ data }: any) => {
   const dispatch = useDispatch();
   const onAddToCart = async (id: any) => {
     if (user.isAdmin && isAuthenticated) {
-      alert("bạn là tài khoản admin không thể thêm sản phẩm vào giỏ hàng");
+      toast.error(
+        "bạn là tài khoản admin không thể thêm sản phẩm vào giỏ hàng"
+      );
       return;
     } else if (!user.isAdmin && isAuthenticated) {
     } else if (!isAuthenticated) {
-      alert("bạn chưa đăng nhập vui lòng đăng nhập");
+      toast.error("bạn chưa đăng nhập vui lòng đăng nhập");
       return;
     }
     const res: any = await dispatch(fetchCreateProductId(id));
     const result = res.payload;
     if (typeof result === "string") {
-      alert(result);
+      toast.error(result);
     } else {
-      alert("Đã thêm sản phẩm vào giỏ hàng");
+      toast.success("Đã thêm sản phẩm vào giỏ hàng");
     }
   };
   const onGetProduct = (id: any) => {

@@ -17,6 +17,7 @@ import {
 } from "../../../../store/slices/UserProductSlice";
 import { axiosInstance } from "../../../../api/axiosClient";
 import { calculateDiscountPercentage } from "../../../../utils/calculateDiscountPercentage/calculateDiscountPercentage";
+import { toast } from "react-toastify";
 const cx = classNames.bind(styles);
 
 const ProductList = () => {
@@ -41,12 +42,14 @@ const ProductList = () => {
 
   const handleAddToCart = async (id: any) => {
     if (user.isAdmin && isAuthenticated) {
-      alert("bạn là tài khoản admin không thể thêm sản phẩm vào giỏ hàng");
+      toast.error(
+        "bạn là tài khoản admin không thể thêm sản phẩm vào giỏ hàng"
+      );
       return;
     } else if (!user.isAdmin && isAuthenticated) {
-      alert("bạn đã thêm sản phẩm vào giỏ hàng");
+      toast.success("bạn đã thêm sản phẩm vào giỏ hàng");
     } else if (!isAuthenticated) {
-      alert("bạn chưa đăng nhập vui lòng đăng nhập");
+      toast.error("bạn chưa đăng nhập vui lòng đăng nhập");
       return;
     }
     if (data && user?.id) {

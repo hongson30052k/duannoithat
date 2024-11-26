@@ -13,6 +13,7 @@ import {
   fetchGetImgProduct,
 } from "../../../../store/slices/CartProductSlice";
 import { fetchGetUserProduct } from "../../../../store/slices/UserProductSlice";
+import { toast } from "react-toastify";
 
 const cx = classNames.bind(styles);
 
@@ -68,9 +69,9 @@ const CheckoutPageMain = () => {
       const res: any = await dispatch(fetchCreateOrder(value));
       console.log(res.payload, "res");
       if (typeof res.payload === "string") {
-        alert("Đơn hàng thất bại");
+        toast.error("Tạo đơn hàng thất bại");
       } else {
-        alert("Đơn hàng thành công");
+        toast.success("Tạo đơn hàng thành công");
         navigate("/");
       }
     },
@@ -93,7 +94,7 @@ const CheckoutPageMain = () => {
       }
     };
     if (data.length === 0) {
-      alert("Giỏ hàng của bạn đang trống");
+      toast.error("Giỏ hàng của bạn đang trống");
     }
     fetchData();
   }, []);

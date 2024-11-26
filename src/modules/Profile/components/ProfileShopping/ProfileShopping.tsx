@@ -15,6 +15,7 @@ import {
   fetchColor,
   fetchGetImgProduct,
 } from "../../../../store/slices/CartProductSlice";
+import { toast } from "react-toastify";
 const cx = classNames.bind(styles);
 
 const ProfileShopping = () => {
@@ -64,9 +65,12 @@ const ProfileShopping = () => {
   }
   const handleSubmit = () => {
     if (result > 0) {
+      toast.success(
+        "Đã chuyển đến trang thanh toán, Vui lòng nhập thông tin đơn hàng"
+      );
       navigate("/order");
     } else {
-      alert("Gior hàng trống!");
+      toast.error("Giỏ hàng trống!");
     }
   };
   const data = userProducts?.map((item: any) => {

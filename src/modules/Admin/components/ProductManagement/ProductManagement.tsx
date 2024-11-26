@@ -24,6 +24,7 @@ import FileBase from "react-file-base64";
 import { generateUUID2 } from "../../../../utils/GenerateldUIID/GenerateldUIID";
 import ModalEdit from "../ModalEdit/ModalEdit";
 import PaginationPageProduct from "../PaginationPageProduct/Pagination";
+import { toast } from "react-toastify";
 const cx = classNames.bind(styles);
 
 const ProductManagement: React.FC = () => {
@@ -119,9 +120,7 @@ const ProductManagement: React.FC = () => {
         id: generateUUID2(),
       };
       handleAddProduct(value);
-      console.log(value, "value");
       formik.resetForm();
-      console.log(values);
     },
   });
   const handDelete = async (productId: string) => {
@@ -297,6 +296,8 @@ const ProductManagement: React.FC = () => {
             borderRadius: "8px",
             boxShadow: "0 2px 5px rgba(0, 0, 0, 0.2)",
             padding: "8px 16px",
+            width: "500px",
+            fontSize: "18px",
           }}
           type="submit"
         >
@@ -431,7 +432,6 @@ const ProductManagement: React.FC = () => {
                 </div>
               )}
 
-              {/* Đệm ngồi */}
               <div>
                 <label htmlFor="country">xuất xứ</label>
                 <select

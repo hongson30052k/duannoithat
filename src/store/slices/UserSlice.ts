@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { axiosInstance } from "../../api/axiosClient";
+import { toast } from "react-toastify";
 const initialState = {
   users: [],
   status: "idle",
@@ -169,6 +170,7 @@ export const UserSlice = createSlice({
       state.userRender = [];
       state.idUser = "";
       state.isAdmin = false;
+      toast.success("Đăng xuất thành công");
     },
   },
   extraReducers: (builder) => {
@@ -224,6 +226,7 @@ export const UserSlice = createSlice({
         state.statusPassword = true;
         state.userRender = action.payload;
         localStorage.setItem("user", JSON.stringify(action.payload));
+        toast.success("Bạn đã đổi password thành công");
       }
     );
     builder.addCase(fetchEditUser.rejected, (state, action) => {});
@@ -235,6 +238,7 @@ export const UserSlice = createSlice({
 
     builder.addCase(fetchEditUserProfile.fulfilled, (state, action) => {
       state.statusEdit = !state.statusEdit;
+      toast.success("Bạn đã chỉnh sửa thông tin user thành công");
     });
     builder.addCase(fetchEditUserImgProfile.fulfilled, (state, action) => {
       state.statusEdit = !state.statusEdit;

@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { axiosInstance } from "../../api/axiosClient";
+import { toast } from "react-toastify";
 
 interface IInitialState {
   card: any[];
@@ -487,10 +488,12 @@ export const cartProductSlice = createSlice({
     builder.addCase(fetchAddToCart.pending, (state, action) => {});
     builder.addCase(
       fetchAddToCart.fulfilled,
-      (state, action: PayloadAction<any>) => {}
+      (state, action: PayloadAction<any>) => {
+        toast.success("Thêm sản phẩm thành công");
+      }
     );
     builder.addCase(fetchAddToCart.rejected, (state, action) => {
-      console.log(action);
+      toast.success("Thêm sản phẩm thất bại");
     });
 
     builder.addCase(fetchDeleteCart.pending, (state, action) => {});
@@ -498,9 +501,12 @@ export const cartProductSlice = createSlice({
       fetchDeleteCart.fulfilled,
       (state, action: PayloadAction<any>) => {
         state.status = !state.status;
+        toast.success("Xoá sản phẩm thành công");
       }
     );
-    builder.addCase(fetchDeleteCart.rejected, (state, action) => {});
+    builder.addCase(fetchDeleteCart.rejected, (state, action) => {
+      toast.success("Xoá sản phẩm thất bại");
+    });
 
     builder.addCase(fetchGetImgProduct.pending, (state, action) => {});
     builder.addCase(
@@ -554,7 +560,9 @@ export const cartProductSlice = createSlice({
     builder.addCase(fetchEditProduct.fulfilled, (state, action) => {
       state.status = !state.status;
     });
-    builder.addCase(fetchEditProduct.rejected, (state, action) => {});
+    builder.addCase(fetchEditProduct.rejected, (state, action) => {
+      toast.error("chỉnh sửa thông tin thất bại");
+    });
     builder.addCase(fetchGetPriceUnder1000k.pending, (state, action) => {});
     builder.addCase(fetchGetPriceUnder1000k.fulfilled, (state, action) => {
       state.status = action.payload;
